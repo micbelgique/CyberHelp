@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+	p SUPRADMINTABEL
+
+
+	table.table(data-click-to-select='true')
+		thead
+			tr
+				th 
+				th School name
+				th Address
+		tbody
+			each val in schools
+				tr 
+					td
+						input(type='checkbox', aria-label='...')
+					td #{val.name}
+					td #{val.address}
+
+
+
+
+
+	//- form(role='form', method='POST', action='superadmin')
+	//- 	.form-group
+	//- 		label(for='name') Email address  
+	//- 		input#email.form-control(type='text', placeholder='School name', name='name')
+	//- 	.form-group
+	//- 		label(for='exampleInputPassword1') Password
+	//- 		input(type="hidden", name="lang", value="#{lang}")
+	//- 		input#password.form-control(type='text', placeholder='Address', name='address')
+	//- 	.row
+	//- 		.col-xs-12
+	//- 			.form-group
+	//- 				input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
+
+	button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Add
+	#myModal.modal.fade(role='dialog')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal') &times;
+					h4.modal-title Add School
+					form(role='form', method='POST', action='superadmin')
+						.modal-body
+							label(for='name') School name 
+							input#email.form-control(type='text', placeholder='School name', name='name')
+							
+							label(for='exampleInputPassword1') Address
+							input(type="hidden", name="lang", value="#{lang}")
+							input#password.form-control(type='text', placeholder='Address', name='address')
+						.modal-footer
+							input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")

@@ -277,15 +277,24 @@ var loginAndFinaliseRegistration = function(req, res){
 	// sendWelcomeEmail(req.user, req.lang);
 	req.login(req.user, function(err) {
 		if (err) {
-			res.render('500');
+			res.render('500')
 		} else {
-
-			return res.render('index', {
-				token: req.user.jwttoken,
-				userm: req.user.email,
-				categories: req.user.categories,
-				userid: req.user._id
-			});
+			switch(req.user.roles[0])
+			{
+				case "super_admin":
+					res.redirect('/' + req.lang + '/superadmin')
+					break;
+				default:
+				res.send('bad')
+					break;
+			}
+			// return res.render('index', {
+			// 	roles: ,
+			// 	token: req.user.jwttoken,
+			// 	userm: req.user.email,
+			// 	categories: req.user.categories,
+			// 	userid: req.user._id
+			// });
 		}
 	});
 }

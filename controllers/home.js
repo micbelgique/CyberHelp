@@ -1,6 +1,9 @@
 'use strict';
 var mandrill = require('node-mandrill')('cqquNxU71EL77FsQJcKH3w');
 
+var mongoose = require('mongoose'),
+	School = require('../models/school.js');
+
 exports.root = function(req, res) {
 
 	var prefLang = '';
@@ -29,7 +32,7 @@ exports.root = function(req, res) {
 
 
 exports.index = function(req, res) {
-	console.log(req.i18n.__("Hello"));
+
 
 	res.render('index', {
 		title: 'Express',
@@ -136,5 +139,41 @@ exports.error505 = function(req, res) {
 exports.privacy = function(req, res){
 	res.render('main/privacy');
 }
+
+exports.superadmin = function(req, res){
+
+	School
+		.find({})
+		// .populate('classrooms')
+		.exec(function(err, schools) {
+			if (err) {
+				return res.status(500).send({
+					message: err
+				});
+			} else {
+				console.log(schools)
+				res.render('main/superadmin', {
+					schools : schools
+				});
+			}
+		});
+	
+}
+
+exports.superadminPost = function(req, res) {
+	var school = new School(req.body);
+
+	school.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: err
+			});
+		} else {
+			res.redirect('superadmin');
+		}
+	});
+	
+}
+
 
 
