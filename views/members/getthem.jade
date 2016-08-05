@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+	br
+	br
+	br
+	br
+	.row
+		each user, index in users
+			.col-md-4
+				img(src="#{user.picture}")

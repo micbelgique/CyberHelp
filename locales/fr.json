@@ -1,0 +1,17 @@
+{
+	"Hello": "Hello",
+	"_lng": "en",
+	"access_secrets": "the goal is to access my secrets",
+	"loggedout": "You're now logged out.",
+	"weltoexpress": "Welcome to Express",
+	"my_secrets": "My Secrets",
+	"logout": "Logout",
+	"login": "Login",
+	"register": "Register",
+	"youmustbelogged": "youmustbelogged",
+	"mailorpwincorrect": "mailorpwincorrect",
+	"emailexists": "emailexists",
+	"nowloggedin": "nowloggedin",
+	"user_unauthorized": "user_unauthorized",
+	"thxsignup": "thxsignup"
+}

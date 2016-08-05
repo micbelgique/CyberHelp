@@ -1,0 +1,13 @@
+<html>
+
+
+	<body>
+		Cliquez sur le liens suivant pour valider vos points:
+
+		<a href="http://localhost:3000/fr/members/validation/{{userId}}/{{secret}}" >
+			Valider inscription + avoir mes points bonus
+		</a>
+	</body>
+
+
+</html>

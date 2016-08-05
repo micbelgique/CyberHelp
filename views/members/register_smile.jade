@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+
+	.loginSection
+		p
+			b #{__("rAlready")}
+				a.login(href="login")  #{__("rLogin")}
+
+	.modal-content.sModalLogin
+		.modal-header
+			header.page-header
+				h2(style="margin-bottom: 0;")
+					| #{__("rRegisterOn")} 
+					strong  EasyExpress
+		.modal-body
+			form(role='form', method='POST', action='/#{lang}/members/loggedfb2?myQuery=none')
+				input(type="hidden", name="lang", value="#{lang}")
+				input(type='text', placeholder='Mot de passe*', name='password', value='yo')
+				.row
+					.col-xs-12
+						.form-group.col-xs-12.col-sm-6
+							label(for='name')
+								| Email
+								span *
+							input#email.form-control(type='email', placeholder='Email*', name='email', value='#{user.email}')
+
+
+				.row
+					.col-xs-12
+						.form-group.col-xs-12
+							input.btn.btn-default.pull-right(type='submit', value="#{__('rILocalyRegister')}")
+				.row
+					.col-xs-12
+						.form-group.col-xs-12
+							p.forms-notes
+								| #{message}
+

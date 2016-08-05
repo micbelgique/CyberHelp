@@ -1,0 +1,73 @@
+extends ../layout
+
+block content
+	style.
+		body{
+				background:#f5f3ed;
+			}
+
+		.mybutton{
+			background-color: #F9C928;
+			color: white;
+			border: white;
+			border-radius: 50px;
+			padding: 15px 35px;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2),0 4px 8px 0 rgba(0,0,0,0.19);
+			font-size: 1.1em;
+			margin-top: 25px;
+		}
+		.mybutton:hover{
+			background-color: white;
+			color: #F9C928;
+		}
+
+	.container
+		form#contact_form.form-horizontal(action=' ', method='post')
+			h1 #{contact_message}
+			fieldset
+				// Form Name
+				legend You can contact us :)
+				// Text input
+				.form-group
+					label.col-md-4.control-label Your Name
+					.col-md-4.inputGroupContainer
+						.input-group
+							span.input-group-addon
+								i.glyphicon.glyphicon-user
+							input.form-control(name='userName', placeholder='name', type='text')
+				// Text input
+				.form-group
+					label.col-md-4.control-label Email
+					.col-md-4.inputGroupContainer
+						.input-group
+							span.input-group-addon
+								i.glyphicon.glyphicon-envelope
+							input.form-control(name='email', placeholder='your email', type='text')
+				// radio checks
+				.form-group
+					label.col-md-4.control-label Subject
+					.col-md-4
+						.radio
+							label
+								input(type='radio', name='bug', value='yes')
+								|  Report a bug
+						.radio
+							label
+								input(type='radio', name='other', value='no')
+								|  Other
+				// Text area
+				.form-group
+					label.col-md-4.control-label Form
+					.col-md-4.inputGroupContainer
+						.input-group
+							span.input-group-addon
+								i.glyphicon.glyphicon-pencil
+							textarea.form-control(name='comment', placeholder='Content')
+				
+				// Button
+				.form-group
+					label.col-md-4.control-label
+					.col-md-4
+						button.mybutton.btn.btn-default(type='submit')
+							| Send 
+							span.glyphicon.glyphicon-send

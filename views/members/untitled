@@ -1,0 +1,23 @@
+
+
+
+L'utilisateur rentre un code Parrain
+
+
+
+On test si le code parrain est valide
+	si non -> on ne fait rien
+	si oui
+		si l'utilisateur est Facebook : + Points
+		sinon:
+
+-> On sauvegarde le code parrain dans un champ 'godfather'
++ generation de code alphaNum dans champ 'secret'
+
+			-> On crée un lien genre : userId/secret
+			-> Envoyer le lien par email
+
+
+Utilisateur clique sur le liens dans l'email
+	-> on test l'userId avec le secret
+		-> si ok ; on Valide l'utilisateur et on incremente ses points

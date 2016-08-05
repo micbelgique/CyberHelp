@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+	script(src='/js/logged.js')
+	style.
+		body{
+		background: #f1f3f5;
+		}
+
+		.look{
+			font-size: 1.5em;
+			margin-top: -30px;
+			color: #462758;
+		}
+
+	.col-md-2
+
+	.col-md-8
+		.displayConfirmation.text-center
+			img(src='/img/homepage/check.png', alt='', style="max-width:60px;margin-bottom:30px;")
+			h3 Votre inscription a bien été prise en compte!
+			h4.look Hé ! Regardez en bas ! Charly est déjà là !
+
+			p Vous pouvez désormais naviguer sur Internet comme vous le faites d'habitude. Nos algorithmes détermineront les moments les plus opportuns pour vous récompenser, ainsi que les récompenses les plus appropriées.
+			p.ital
+				b ATTENTION:
+				|  Ne vous inquiétez pas si vous ne recevez rien pendant quelques jours. Il se peut qu'il n'y ait pas tout de suite de récompense correspondant à votre profil. Nous grandissons chaque jour (grâce à vous), et notre catalogue de récompense aussi !
+
+
+		.displayConfirmationBadDevice.text-center
+			h3 Oops :s
+
+			p il semblerait que votre navigateur soit incompatible.
+			p
+				b   MerciCharly est une extension pour Google Chrome et Opéra sur votre ordinateur.
+				|  Veuillez vous rendre sur votre ordinateur et utiliser Google chrome ou Opéra comme navigateur. Nous travaillons dur pour pouvoir être compatible avec votre navigateur au plus vite. Merci de votre visite, et nous avons hâte de vous compter au sein de notre communauté !
+	.col-md-2
+
+	input(type='hidden', value="#{token}", id="inputtoken")
+	input(type='hidden', value="#{userm}", id="userm")
+	input(type='hidden', value="#{userid}", id="userid")

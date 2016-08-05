@@ -1,0 +1,82 @@
+
+extends layout
+
+block content
+	h1 customers
+
+
+	div(ng-app='crm_app' ng-controller='CustomersCtrl', ng-init='find()', ng-cloak='')
+
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+
+		.editForm(ng-show="showForm")
+			form.form-horizontal
+
+				.form-group
+					label.col-sm-2.control-label(for='inputName') Nom
+					.col-sm-10
+						input#inputName.form-control(type='text', ng-model='current.name',
+							placeholder='nom du client')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputAddress') Adresse
+					.col-sm-10
+						input#inputAddress.form-control(type='text', ng-model='current.address',
+							placeholder='adresse du client..')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputZip') CodePostal
+					.col-sm-10
+						input#inputZip.form-control(type='text', ng-model='current.zipcode',
+							placeholder='eg. 1050')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputCity') Ville
+					.col-sm-10
+						input#inputCity.form-control(type='text', ng-model='current.city',
+							placeholder='eg. Ixelles')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputVAT') TVA
+					.col-sm-10
+						input#inputVAT.form-control(type='text', ng-model='current.VAT',
+							placeholder='BE055x xxx xxx')
+
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type='submit', ng-click='submitNew()',
+							ng-if="!isEditing") Ajouter nouveau
+						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+							ng-if="isEditing") Editer
+
+
+		div(ng-show="!showForm")
+			table.table.table-striped
+				thead
+					th #
+					th Nom
+					th Adresse
+					th Zip
+					th Ville
+					th TVA
+					th Action
+				tr(ng-repeat="customer in customers")
+					td .
+					td {{customer.name}}
+					td {{customer.address}}
+					td {{customer.zipcode}}
+					td {{customer.city}}
+					td {{customer.VAT}}
+					td
+						button.btn.btn-primary.btnEdit(type="button",
+							ng-click="edit(customer)") Modifier
+						button.btn.btn-danger(type="button",
+							ng-click="delete(customer)") Supprimer
+
+
+
+
+	script(src="mods/app.js")
+	script(src="mods/services/service.customer.js")
+	script(src="mods/controllers/CustomersCtrl.js")

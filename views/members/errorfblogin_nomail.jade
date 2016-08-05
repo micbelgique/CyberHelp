@@ -1,0 +1,37 @@
+extends ../layout3
+
+block content
+	style.
+		body{
+			background: #f5f3ed;
+		}
+	br
+
+	.container
+		br
+		.col-md-2
+
+		.col-md-8
+			.displayConfirmation.text-center
+				//- img(src='/img/homepage/check.png', alt='', style="max-width:60px;margin-bottom:30px;")
+				h5.look #{__('badSeeamsTo')}
+
+				p #{__('badBut')}
+
+				form(role='form', method='POST', action='fixfbuser')
+					.form-group
+						//- label(for='exampleInputEmail1') Email address
+						input#exampleInputEmail1.form-control(type='email', placeholder='Email*', name="email", style="max-width:400px; margin:auto;")
+						input(type="hidden", value="#{user}", name="user")
+
+					button.btn.btn-default(type='submit') #{__('rILocalyRegister')}
+				br
+
+
+		.col-md-2
+	
+	br
+	br
+	br
+
+
