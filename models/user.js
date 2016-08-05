@@ -12,29 +12,22 @@ require('mongoose-moment')(mongoose);
 var bcrypt = require('bcrypt');
 
 var schema = mongoose.Schema({
-	last: 'Moment',
-	email: {type: String, require: true, trim: true, unique: true},
-	password: {type: String, require: false},
+	email: {type: String, required: true, trim: true, unique: true},
+	password: {type: String, required: false},
 	activated : {type: Boolean, default: false},
 	secret: {type: String, default: null},
-	picture: {type: String, default: null},
 	jwttoken: {type: String, default: null},
-	name: {type: String, default: null},
 	first_name: {type: String, default: null},
 	last_name: {type: String, default: null},
 	gender: {type: String, default: null},
 	age: {type: Number, default: null},
-	local: {type: String, default: null},
-	facebookId:{type:String, default: null},
-	country: {type:String, default: null},
-	browser: {type:String, default: null},
-	os: {type:String, default: null},
-	version: {type: String},
+	school: {type: String, default:null},
+	currentYear: {type: Number, default: 1},
 
   roles: {
 		type: [{
 			type: String,
-			enum: ['student', 'admin', 'teacher']
+			enum: ['student', 'director', 'teacher', 'super_admin']
 		}],
 		default: ['student']
   }

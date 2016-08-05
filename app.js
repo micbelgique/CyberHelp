@@ -239,6 +239,8 @@ var members = require('./routes/members')(app);
 var secrets = require('./routes/secrets')(app);
 require('./routes/_api/customers')(app);
 require('./routes/_api/products')(app);
+require('./routes/_api/schools')(app);
+require('./routes/_api/classrooms')(app);
 
 
 app.get('/auth/facebook', function(req, res, next){

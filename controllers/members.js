@@ -244,6 +244,7 @@ exports.registerLang = function(req, res) {
 	else
 		return res.redirect('/en/members/register_smile');
 }
+
 exports.register_smile = function(req, res){
 	var user = {
 		password: '',
@@ -274,8 +275,6 @@ exports.loggedfb = function(req, res){
 var loginAndFinaliseRegistration = function(req, res){
 
 	// sendWelcomeEmail(req.user, req.lang);
-	console.log('facile facile.')
-
 	req.login(req.user, function(err) {
 		if (err) {
 			res.render('500');
