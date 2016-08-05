@@ -50,9 +50,6 @@ mongoose.connect('mongodb://localhost:27017/mons');
 
 var fbLogin = require('./routes/handleFacebookLogin');
 
-
-
-
 var app = express();
 
 app.use(cors());
