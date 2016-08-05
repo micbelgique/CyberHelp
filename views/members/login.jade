@@ -5,11 +5,11 @@ block content
 	form(role='form', method='POST', action='login')
 		.form-group
 			label(for='name') Email address  
-			input#email.form-control(type='email', placeholder='Email*', name='email', value='#{user.email}')
+			input#email.form-control(type='email', placeholder='Email', name='email', value='#{user.email}')
 		.form-group
 			label(for='exampleInputPassword1') Password
 			input(type="hidden", name="lang", value="#{lang}")
-			input#password.form-control(type='text', placeholder='Mot de passe*', name='password', value='yo')
+			input#password.form-control(type='text', placeholder='Mot de passe', name='password')
 		.row
 			.col-xs-12
 				.form-group.col-xs-12
