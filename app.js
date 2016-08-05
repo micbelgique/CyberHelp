@@ -241,6 +241,7 @@ require('./routes/_api/customers')(app);
 require('./routes/_api/products')(app);
 require('./routes/_api/schools')(app);
 require('./routes/_api/classrooms')(app);
+require('./routes/_api/members')(app);
 
 
 app.get('/auth/facebook', function(req, res, next){

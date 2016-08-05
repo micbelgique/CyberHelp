@@ -281,6 +281,7 @@ var loginAndFinaliseRegistration = function(req, res){
 		} else {
 
 			return res.render('index', {
+				user: req.user,
 				token: req.user.jwttoken,
 				userm: req.user.email,
 				categories: req.user.categories,
