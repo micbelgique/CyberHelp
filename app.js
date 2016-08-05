@@ -17,6 +17,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var cors = require('cors');
+
 var settings = require('./config/settings')
 
 var colors = require('colors');
@@ -53,6 +55,8 @@ var fbLogin = require('./routes/handleFacebookLogin');
 
 var app = express();
 
+app.use(cors());
+app.options('*', cors()); // include before other routes
 
 
 // Attach the i18n property to the express request object
