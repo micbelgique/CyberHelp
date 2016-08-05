@@ -2,35 +2,25 @@ extends ../layout
 
 block content
 
-	.modal-content.sModalLogin
-		.modal-header
-			header.page-header
-				h2(style="margin-bottom: 0;")
-					| #{__("lConnectOn")}  
-					strong SmileFocus
-		.modal-body
-			form(role='form', method='POST', action='login')
-				input(type="hidden", name="lang", value="#{lang}")
-				input(type='text', placeholder='Mot de passe*', name='password', value='yo')
-				.row
-					.col-xs-12
-						.form-group.col-xs-12.col-sm-12
-							label(for='name')
-								| Email
-								span *
-							input#email.form-control(type='email', placeholder='Email*', name='email', value='#{user.email}')
+	form(role='form', method='POST', action='login')
+		.form-group
+			label(for='name') Email address  
+			input#email.form-control(type='email', placeholder='Email*', name='email', value='#{user.email}')
+		.form-group
+			label(for='exampleInputPassword1') Password
+			input(type="hidden", name="lang", value="#{lang}")
+			input#password.form-control(type='text', placeholder='Mot de passe*', name='password', value='yo')
+		.row
+			.col-xs-12
+				.form-group.col-xs-12
+					input.btn.btn-default.pull-right(type='submit', value="#{__('rILocalyRegister')}")
 
-				.row
-					.col-xs-12
-						.form-group.col-xs-12
-							input.btn.btn-default.pull-right(type='submit', value="#{__('rILocalyRegister')}")
+		.row
+			.col-xs-12
+				.form-group.col-xs-12
+					p.forms-notes
+						| #{message}
+		
 
-				.row
-					.col-xs-12
-						.form-group.col-xs-12
-							p.forms-notes
-								| #{message}
-	
-
-	.col-md-3
+		.col-md-3
 
