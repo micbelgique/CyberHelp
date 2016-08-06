@@ -801,7 +801,7 @@ exports.hasAuthorization = function(roles) {
 
 exports.isAuthApi = function(req, res, next) {
 	// if the user is not auth -> method provided by passport
-	console.log(isAuthApi);
+	console.log('isAuthApi');
 
 	if (!req.isAuthenticated()) {
 		return res.status(403).send({
