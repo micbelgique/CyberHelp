@@ -15,12 +15,13 @@ module.exports = function(app) {
 		.get(home.testing);
 
 	app.route('/:lng(fr|nl|en)/superadmin')
-		.get(home.superadmin)
-		.post(home.superadminPost);
+		.get(home.superadmin);
 
 	app.route('/:lng(fr|nl|en)/director')
-		.get(home.director)
-		.post(home.directorPost);
+		.get(home.director);
+
+	app.route('/:lng(fr|nl|en)/teacher')
+		.get(home.teacher);
 
 	app.route('/:lng(fr|nl|en)/testing2')
 		.get(home.testing2);

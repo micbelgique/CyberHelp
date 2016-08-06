@@ -156,50 +156,22 @@ exports.superadmin = function(req, res){
 	})
 }
 
-exports.superadminPost = function(req, res) {
-	var school = new School(req.body);
 
-	school.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: err
-			});
-		} else {
-			res.redirect('superadmin');
-		}
-	})
-}
 
 exports.director = function(req, res){
 	res.render('main/director', {
 		schoolId: req.user.school
 	});
-	// request('http://localhost:3001/api/schools/'+req.user.school+'/classrooms', 
-	// 	function (error, response, body) {
-
-	//   if (!error && response.statusCode == 200) {
-
-	//     res.render('main/director', {
-	// 		teachers : body
-	// 	});
-
-	//   }
-	// })
-}
-
-exports.directorPost = function(req, res) {
-	var teacher = new Teacher(req.body);
-
-	teacher.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: err
-			});
-		} else {
-			res.redirect('director');
-		}
-	})
 };
+
+exports.teacher = function(req, res){
+	res.render('main/teacher', {
+		schoolId: req.user.school,
+		classroomId: req.user.classroom
+	});
+};
+
+
 
 
 
