@@ -24,9 +24,12 @@ module.exports = function(app) {
 		.put(members.isAuthApi, classrooms.update)
 		.delete(members.isAuthApi, classrooms.delete);
 
-	app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
-		.get(students.list)
-		.post(students.create);
+	app.route('/api/schools/:schoolId/classrooms/:classroomId/students')
+		.get(classrooms.getStudents)
+		.post(classrooms.createStudent);
+
+	// app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
+
 
 	app.param('schoolId', schools.schoolByID);
 	app.param('classroomId', classrooms.classroomByID);

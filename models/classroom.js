@@ -5,7 +5,11 @@ var schema = mongoose.Schema({
 		type: String,
 		require: true,
 		trim: true
-	}
+	},
+	users: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
+	}]
 });
 
 

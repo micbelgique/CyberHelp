@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
 	Classroom = require('../../models/classroom.js'),
+	School = require('../../models/school.js'),
 	_ = require('lodash');
 
 /**
@@ -29,6 +30,8 @@ exports.create = function(req, res) {
 		}
 	});
 };
+
+
 
 /**
  * Show the current classroom
@@ -76,21 +79,37 @@ exports.delete = function(req, res) {
  * List of Classrooms
  */
 exports.list = function(req, res) {
-	Classroom
-		.find({})
-		.sort('-created')
-		.populate('user')
-		.exec(function(err, classrooms) {
-			if (err) {
-				return res.status(500).send({
-					message: err
-				});
-			} else {
-				res.jsonp(classrooms);
-			}
-		});
+	School.populate(req.school, {path:"classrooms"}, function(err, school) {
+		res.jsonp(school);
+	});
 };
 
+exports.getStudents = function(req, res) {
+	var cr = req.params['classroomId'];
+	School.populate(req.school, {path:"classrooms"}, function(err, school) {
+
+		var clsroom = _.filter(school.classrooms, function(c) { 	
+			return c._id+'' === cr; 
+		});
+		
+		res.jsonp(clsroom);
+	});
+}
+
+exports.createStudent = function(req, res) {
+	var classroom = req.classroom;
+	
+	classroom.users.push(req.body);
+	classroom.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: err
+			});
+		} else {
+			res.jsonp(classroom);
+		}
+	});
+}
 
 /**
  * Classroom middleware
