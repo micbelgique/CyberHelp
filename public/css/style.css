@@ -11,3 +11,7 @@ a {
 	height: 2em;
 	width: 6em;
 }
+
+.cancelbtn_right{
+	float: right;
+}
