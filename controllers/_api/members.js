@@ -54,3 +54,12 @@ exports.loginPost = function(req, res) {
 		}
 	});
 }
+
+exports.userById = function(req, res, next, id) {
+	User.findById(id).exec(function(err, user) {
+		if (err) return next(err);
+		if (!user) return next(new Error('Failed to load notification ' + id));
+		req.user = user;
+		next();
+	});
+};

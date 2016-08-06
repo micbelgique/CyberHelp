@@ -96,7 +96,7 @@ exports.getStudents = function(req, res) {
 	});
 }
 
-exports.createStudent = function(req, res) {
+exports.associateStudent = function(req, res) {
 	var classroom = req.classroom;
 	
 	classroom.users.push(req.body);

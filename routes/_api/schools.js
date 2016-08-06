@@ -5,6 +5,7 @@ module.exports = function(app) {
 	var classrooms = require('../../controllers/_api/classrooms');
 	var students = require('../../controllers/_api/students');
 	var members = require('../../controllers/members');
+	var membersApi = require('../../controllers/_api/members');
 
 	app.route('/api/schools')
 		.get( schools.list)
@@ -25,12 +26,14 @@ module.exports = function(app) {
 		.delete(members.isAuthApi, classrooms.delete);
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students')
-		.get(classrooms.getStudents)
-		.post(classrooms.createStudent);
+		.get(classrooms.getStudents);
 
-	// app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
+
+	app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
+		.post(classrooms.associateStudent);
 
 
 	app.param('schoolId', schools.schoolByID);
 	app.param('classroomId', classrooms.classroomByID);
+	app.param('userId', membersApi.userById);
 }
