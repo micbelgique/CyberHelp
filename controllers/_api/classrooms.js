@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	Classroom = require('../../models/classroom.js'),
 	School = require('../../models/school.js'),
+	User = require('../../models/user.js'),
 	_ = require('lodash');
 
 /**
@@ -33,6 +34,23 @@ exports.create = function(req, res) {
 	});
 };
 
+
+exports.createStudent = function(req, res) {
+	var user = new User(req.body);
+	
+	user.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: err
+			});
+		} else {
+			req.classroom.users.push(user)
+			req.classroom.save(function(err){
+				return res.jsonp(user);
+			})
+		}
+	});
+}
 
 
 /**

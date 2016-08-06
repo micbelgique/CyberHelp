@@ -26,7 +26,8 @@ module.exports = function(app) {
 		.delete( classrooms.delete);
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students')
-		.get(classrooms.getStudents);
+		.get(classrooms.getStudents)
+		.post(classrooms.createStudent);
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
 		.post(classrooms.associateStudent);

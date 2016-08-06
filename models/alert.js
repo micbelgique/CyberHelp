@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema({
 	status: String,
 	message: String,
-	users: {
+	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'
 	}
