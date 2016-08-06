@@ -109,8 +109,11 @@ opts.secretOrKey = settings.jwtSecret;
 
 
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+	console.log("jwt_payload passport",jwt_payload);
 
 	User.findOne({email: jwt_payload}, function(err, user) {
+		console.log("Users passport",user);
+		console.log("jwt_payload passport",jwt_payload);
         if (err) {
             return done(err, false);
         }

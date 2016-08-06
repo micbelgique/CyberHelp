@@ -21,3 +21,8 @@ var schema = mongoose.Schema({
 
 var Alert = mongoose.model('Alert', schema);
 module.exports = Alert;
+
+
+
+
+// JWT eyJhbGciOiJIUzI1NiJ9.c3R1ZGVudEBjeWJlci5jb20.UGSURW-qNoyrPLXXBpzBkypMJBQ0wdwQnQwVTtykHNo
