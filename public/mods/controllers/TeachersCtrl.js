@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('crm_app')
-	.controller('teachersCtrl', ['$scope', 'Teacher', 'Alert', '$http',
-		function($scope, Teacher, Alert, $http) {
+	.controller('teachersCtrl', ['$scope', 'Teacher',  '$http',
+		function($scope, Teacher,  $http) {
 
 			$http.defaults.withCredentials = true;
 
 			$scope.teachers = [];
+			$scope.alerts = [];
 			$scope.current = {};
 			$scope.isEditing = false;
 
@@ -14,6 +15,8 @@ angular.module('crm_app')
 				Teacher.query({}, function(teachers) {
 					$scope.teachers = teachers;
 				});
+
+				
 			};
 
 			$scope.submitNew = function() {
