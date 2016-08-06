@@ -1,5 +1,5 @@
 'use strict';
-var mandrill = require('node-mandrill')('cqquNxU71EL77FsQJcKH3w');
+var mandrill = require('node-mandrill')('xxx');
 
 var mongoose = require('mongoose'),
 	School = require('../models/school.js');
@@ -60,8 +60,6 @@ exports.contact = function(req, res){
 }
 
 exports.contactPost = function(req, res){
-	
-	// console.log(req.body.email);
 
 	if(!req.body.email){
 		return res.redirect('/' + req.lang + '/contact')
@@ -90,7 +88,7 @@ exports.contactPost = function(req, res){
 	var message = {
 		message: {
 			to: [{
-			  email : 'contact@smilefocus.org'
+			  email : 'contact@xxx.org'
 			}],
 			from_email: req.body.email,
 			subject: subject,
