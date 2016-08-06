@@ -1,73 +1,70 @@
 extends ../layout
 
 block content
-	p SUPRADMINTABEL
+	h1 Schools
 
 
-	table.table(id='table', data-click-to-select='true')
-		theadS
-			tr
-				th 
-				th School name
-				th Address
-		tbody
-			
-			each val, i in schools
-				tr 
+	div(ng-app='crm_app' ng-controller='SchoolsCtrl', ng-init='find()', ng-cloak='')
+
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+
+		.editForm(ng-show="showForm")
+
+			p {{current}}
+			form.form-horizontal
+				.form-group
+					label.col-sm-2.control-label(for='inputName') Nom
+					.col-sm-10
+						input#inputName.form-control(type='text', ng-model='current.name',
+							placeholder='nom du produit')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Type
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.type',
+							placeholder='type du produit')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputPriceSale') Prix de vente
+					.col-sm-10
+						input#inputPriceSale.form-control(type='number', ng-model='current.price',
+							placeholder="prix de vente")
+
+
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type='submit', ng-click='submitNew()',
+							ng-if="!isEditing") Ajouter nouveau
+						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+							ng-if="isEditing") Editer
+
+
+
+		div(ng-show="!showForm")
+			table.table.table-striped
+				thead
+					th #
+					th user
+					th Nom
+					th Type
+					th Prix de vente
+
+				tr(ng-repeat="school in schools")
+					td .
+					td {{school.user.email}}
+					td {{school.name}}
+					td {{school.type}}
+					td(ng-if="school.price") {{school.price}}€
+					td(ng-if="!school.price") sur demande
 					td
-						input(id=i + '' type='checkbox', aria-label='...')
-					td(id='name' + i) #{val.name}
-					td(id='address' + i) #{val.address}
+						button.btn.btn-primary.btnEdit(type="button",
+							ng-click="edit(school)") Modifier
+						button.btn.btn-danger(type="button",
+							ng-click="delete(school)") Supprimer
 
 
 
-
-
-	//- form(role='form', method='POST', action='superadmin')
-	//- 	.form-group
-	//- 		label(for='name') Email address  
-	//- 		input#email.form-control(type='text', placeholder='School name', name='name')
-	//- 	.form-group
-	//- 		label(for='exampleInputPassword1') Password
-	//- 		input(type="hidden", name="lang", value="#{lang}")
-	//- 		input#password.form-control(type='text', placeholder='Address', name='address')
-	//- 	.row
-	//- 		.col-xs-12
-	//- 			.form-group
-	//- 				input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
-
-	button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModalAdd') Add
-	#myModalAdd.modal.fade(role='dialog')
-		.modal-dialog
-			.modal-content
-				.modal-header
-					button.close(type='button', data-dismiss='modal') &times;
-					h4.modal-title Add School
-					form(role='form', method='POST', action='superadmin')
-						.modal-body
-							label(for='name') School name 
-							input#email.form-control(type='text', placeholder='School name', name='name')
-							
-							label(for='exampleInputPassword1') Address
-							input(type="hidden", name="lang", value="#{lang}")
-							input#password.form-control(type='text', placeholder='Address', name='address')
-						.modal-footer
-							input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
-
-	button.btn.btn-info.btn-lg(id='update_btn', type='button', data-toggle='modal', data-target='#myModalUpdate') Update
-	#myModalUpdate.modal.fade(role='dialog')
-		.modal-dialog
-			.modal-content
-				.modal-header
-					button.close(type='button', data-dismiss='modal') &times;
-					h4.modal-title Update school
-					form(role='form', method='POST', action='superadmin')
-						.modal-body
-							label(for='name') School name 
-							input#email.form-control(type='text', placeholder='School name', name='name')
-							
-							label(for='exampleInputPassword1') Address
-							input(type="hidden", name="lang", value="#{lang}")
-							input#password.form-control(type='text', placeholder='Address', name='address')
-						.modal-footer
-							input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
+	script(src="/mods/app.js")
+	script(src="/mods/services/service.school.js")
+	script(src="/mods/controllers/SchoolsCtrl.js")
