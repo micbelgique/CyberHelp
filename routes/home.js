@@ -14,6 +14,10 @@ module.exports = function(app) {
 	app.route('/:lng(fr|nl|en)/testing')
 		.get(home.testing);
 
+	app.route('/:lng(fr|nl|en)/superadmin')
+		.get(home.superadmin)
+		.post(home.superadminPost);
+
 	app.route('/:lng(fr|nl|en)/testing2')
 		.get(home.testing2);
 

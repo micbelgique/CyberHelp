@@ -7,8 +7,8 @@ module.exports = function(app) {
 	var members = require('../../controllers/members');
 
 	app.route('/api/schools')
-		.get(members.isAuthApi, schools.list)
-		.post(members.isAuthApi, schools.create);
+		.get( schools.list)
+		.post( schools.create);
 
 	app.route('/api/schools/:schoolId')
 		.get(schools.read)
