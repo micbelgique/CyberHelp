@@ -18,11 +18,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var cors = require('cors');
-
 var settings = require('./config/settings')
-
 var colors = require('colors');
-
 var MongoStore = require('connect-mongo')(session);
 
 
@@ -42,14 +39,7 @@ var User = require('./models/user');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/mons');
 
-// var routes = require('./routes/index')(app);
-
-//views routes
-// var secrets = require('./routes/secrets')
-// var users = require('./routes/users');
-
 var fbLogin = require('./routes/handleFacebookLogin');
-
 var app = express();
 
 app.use(cors());
@@ -80,8 +70,6 @@ app.use(function(req, res, next) {
 			req.lang = langRaw;
 		}
 	}
-
-    // req.i18n.setLocaleFromCookie();
     req.i18n.setLocale(req.lang);
     next();
 });
@@ -92,27 +80,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('settings', settings)
 
-
 app.use(favicon());
-// app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
-// app.use(express.methodOverride());
 
 app.use(cookieParser());
-
-// app.use(session({
-// 	secret: 'secret',
-// 	resave: true,
-// 	saveUninitialized: true,
-// 	cookie: {
-// 		maxAge: 60000
-// 	}
-// }));
-
-
 app.use(session({
 	secret: 'OuRCRmS3cr3rrt',
 	maxAge: new Date(Date.now() + 3600000),
@@ -137,7 +111,6 @@ opts.secretOrKey = settings.jwtSecret;
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
 
 	User.findOne({email: jwt_payload}, function(err, user) {
-    // User.findOne({id: jwt_payload.sub}, function(err, user) {
         if (err) {
             return done(err, false);
         }
@@ -145,7 +118,6 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
             done(null, user);
         } else {
             done(null, false);
-            // or you could create a new account
         }
     });
 }));
@@ -171,37 +143,14 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
-
-// passport.use(new FacebookStrategy({
-// 		clientID: '1604691576425029',
-// 		clientSecret: "988d26ec347add1e1c3f18325e1ee853",
-// 		// callbackURL: "http://localhost:3000/auth/facebook/callback",
-// 		profileFields: [
-// 			'id', 'name',
-// 			'picture.type(large)', 'emails',
-// 			'locale',
-// 			// 'user_birthday',
-// 			// 'user_location',
-// 			// 'user_likes',
-// 			// 'user_relationships',
-// 			'displayName', 'about', 'gender', 'age_range']
-// 	},
-// 	fbLogin
-// ));
-
-
 passport.use(new FacebookStrategy({
-		clientID: '1706550902959630',
-		clientSecret: "9304a067f39836d9a9569bdb791ce759",
+		clientID: 'xxx',
+		clientSecret: "xxx",
 		callbackURL: "http://www.smilefocus.org/auth/facebook/callback",
 		profileFields: [
 			'id', 'name',
 			'picture.type(large)', 'emails',
 			'locale',
-			// 'user_birthday',
-			// 'user_location',
-			// 'user_likes',
-			// 'user_relationships',
 			'displayName', 'about', 'gender', 'age_range']
 	},
 	fbLogin
@@ -228,12 +177,8 @@ app.use(function(req, res, next) {
 });
 
 
-
 var oneDay = 86400000;
-
 app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
-// app.use(express.static(path.join(__dirname, 'public')));
-
 
 var home = require('./routes/home')(app);
 var members = require('./routes/members')(app);
@@ -244,11 +189,7 @@ require('./routes/_api/schools')(app);
 require('./routes/_api/classrooms')(app);
 require('./routes/_api/members')(app);
 
-
 app.get('/auth/facebook', function(req, res, next){
-
-		console.log(' !!!!! ');
-
 		var query = req.query.myQuery;
 
 		if(!query)
@@ -264,16 +205,6 @@ app.get('/auth/facebook', function(req, res, next){
 
 
 app.get('/auth/facebook/callback', function(req, res, next){
-
-	console.log(' !!!!! callback de merde');
-	console.log(req.query.myQuery);
-	console.log(req.body);
-	console.log(req.query);
-
-	console.log(passport.myQuery);
-
-	console.log(passport);
-
 	passport.authenticate('facebook', {
 		callbackURL: "http://www.smilefocus.org/auth/facebook/callback?myQuery="+ req.query.myQuery,
 		successRedirect: "/"+req.query.myQuery+"/members/loggedfb2?myQuery="+ req.query.myQuery,

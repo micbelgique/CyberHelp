@@ -74,7 +74,7 @@ exports.contactPost = function(req, res){
 	var subject = "Contact Form";
 
 	if(req.body.bug)
-		subject = "Bug on SimeFocus";
+		subject = "Bug on website";
 
 	if(req.body.media)
 		subject = "MEDIA contact";
