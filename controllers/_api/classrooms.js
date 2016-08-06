@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  * Create a customer
  */
 exports.create = function(req, res) {
+	console.log(req.body);
 	var classroom = new Classroom(req.body);
 	
 	classroom.save(function(err) {
@@ -20,6 +21,7 @@ exports.create = function(req, res) {
 				message: err
 			});
 		} else {
+			console.log(classroom);
 			req.school.classrooms.push(classroom);
 			req.school.save(function(err){
 				if (err) 

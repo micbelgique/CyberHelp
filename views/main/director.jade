@@ -1,31 +1,34 @@
 extends ../layout
 
 block content
-	h1 Teachers
+	h1 Classrooms
 
 	div(ng-app='crm_app' ng-controller='ClassroomsCtrl', ng-init='find()', ng-cloak='')
 
-		p {{classrooms}}
+		
 		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
 		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
 
-		input(type="text", value="#{schoolId}", id="schoolId")
+		input(type="hidden", value="#{schoolId}", id="schoolId")
 		.editForm(ng-show="showForm")
-
-			p {{current}}
 			form.form-horizontal
 				.form-group
-					label.col-sm-2.control-label(for='inputName') Nom
+					label.col-sm-2.control-label(for='inputName') Year
 					.col-sm-10
-						input#inputName.form-control(type='text', ng-model='current.name',
-							placeholder='nom du produit')
+						input#inputName.form-control(type='text', ng-model='current.year',
+							placeholder='Year')
 
 				.form-group
-					label.col-sm-2.control-label(for='inputType') Type
+					label.col-sm-2.control-label(for='inputType') Classroom name
 					.col-sm-10
-						input#inputType.form-control(type='text', ng-model='current.address',
-							placeholder='type du produit')
+						input#inputType.form-control(type='text', ng-model='current.name',
+							placeholder='Classroom name')
 
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Teacher name
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.prof',
+							placeholder='Teacher name')
 
 				.form-group
 					.col-sm-offset-2.col-sm-10
@@ -40,18 +43,20 @@ block content
 			table.table.table-striped
 				thead
 					th #
-					th Teacher lastname
-					th Teacher firstname
+					th Year
+					th Classroom name
+					th Teacher name
 
-				tr(ng-repeat="teacher in Teachers")
+				tr(ng-repeat="classroom in classrooms")
 					td .
-					td {{teacher.first_name}}
-					td {{teacher.last_name}}
+					td {{classroom.year}}
+					td {{classroom.name}}
+					td {{classroom.prof}}
 					td
 						button.btn.btn-primary.btnEdit(type="button",
-							ng-click="edit(teacher)") Modifier
+							ng-click="edit(classroom)") Modifier
 						button.btn.btn-danger(type="button",
-							ng-click="delete(teacher)") Supprimer
+							ng-click="delete(classroom)") Supprimer
 
 
 
