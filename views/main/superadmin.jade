@@ -4,19 +4,20 @@ block content
 	p SUPRADMINTABEL
 
 
-	table.table(data-click-to-select='true')
-		thead
+	table.table(id='table', data-click-to-select='true')
+		theadS
 			tr
 				th 
 				th School name
 				th Address
 		tbody
-			each val in schools
+			
+			each val, i in schools
 				tr 
 					td
-						input(type='checkbox', aria-label='...')
-					td #{val.name}
-					td #{val.address}
+						input(id=i + '' type='checkbox', aria-label='...')
+					td(id='name' + i) #{val.name}
+					td(id='address' + i) #{val.address}
 
 
 
@@ -35,13 +36,31 @@ block content
 	//- 			.form-group
 	//- 				input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
 
-	button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Add
-	#myModal.modal.fade(role='dialog')
+	button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModalAdd') Add
+	#myModalAdd.modal.fade(role='dialog')
 		.modal-dialog
 			.modal-content
 				.modal-header
 					button.close(type='button', data-dismiss='modal') &times;
 					h4.modal-title Add School
+					form(role='form', method='POST', action='superadmin')
+						.modal-body
+							label(for='name') School name 
+							input#email.form-control(type='text', placeholder='School name', name='name')
+							
+							label(for='exampleInputPassword1') Address
+							input(type="hidden", name="lang", value="#{lang}")
+							input#password.form-control(type='text', placeholder='Address', name='address')
+						.modal-footer
+							input.btn.btn-primary(type='submit', value="#{__('rILocalyRegister')}")
+
+	button.btn.btn-info.btn-lg(id='update_btn', type='button', data-toggle='modal', data-target='#myModalUpdate') Update
+	#myModalUpdate.modal.fade(role='dialog')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal') &times;
+					h4.modal-title Update school
 					form(role='form', method='POST', action='superadmin')
 						.modal-body
 							label(for='name') School name 
