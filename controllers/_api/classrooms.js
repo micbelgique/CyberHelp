@@ -71,8 +71,24 @@ exports.createStudent = function(req, res) {
 	console.log('create student')
 	console.log(req.body);
 
-	var user = new User(req.body);
-	
+	var _u = {
+		email: req.body.email,
+		password: req.body.password,
+		last_name: req.body.last_name,
+		first_name: req.body.first_name,
+		roles: ['student']
+	}
+	var user = new User(_u);
+
+	user.password = user.generateHash(req.body.password);
+	var token = jwt.sign(user.email, settings.jwtSecret, {
+	  expiresIn: settings.expiresTimeJwt // in seconds
+	});
+	user.jwttoken = 'JWT ' + token;
+
+	user.classroom = req.classroom;
+	user.school = req.school;
+
 	user.save(function(err) {
 		if (err) {
 			return res.status(400).send({

@@ -99,7 +99,7 @@ exports.listByClass = function(req, res) {
 					return a.user.classroom+'' === req.params['classroomId']; 
 				});
 
-				return res.jsonp({alerts: xxx, count: xxx.length});
+				return res.jsonp(xxx);
 			}
 	});
 };

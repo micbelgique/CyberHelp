@@ -15,7 +15,6 @@ angular.module('crm_app')
 				Teacher.query({}, function(teachers) {
 					$scope.teachers = teachers;
 				});
-
 				
 			};
 
