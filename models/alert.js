@@ -8,10 +8,8 @@ var schema = mongoose.Schema({
 		}
 	},
 	status: {
-		type: {
-			type: string,
-			enum: ['open', 'accepted', 'inprogress', 'closed']
-		},
+		type: String,
+		// enum: ['open', 'accepted', 'inprogress', 'closed']
 		default: 'open'
 	},
 	message: String,
