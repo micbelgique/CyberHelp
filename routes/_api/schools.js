@@ -28,7 +28,6 @@ module.exports = function(app) {
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students')
 		.get(classrooms.getStudents);
 
-
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
 		.post(classrooms.associateStudent);
 

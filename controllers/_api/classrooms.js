@@ -63,9 +63,7 @@ exports.update = function(req, res) {
  * Delete a classroom
  */
 exports.delete = function(req, res) {
-
 	var classroom = req.classroom;
-
 	classroom.remove(function(err) {
 		if (err) {
 			return res.status(400).send({ message: err });
@@ -91,22 +89,29 @@ exports.getStudents = function(req, res) {
 		var clsroom = _.filter(school.classrooms, function(c) { 	
 			return c._id+'' === cr; 
 		});
-		
-		res.jsonp(clsroom);
+		if(clsroom){
+			Classroom.populate(clsroom[0], {path: 'users'}, function(err, classroom){
+				if(err) return res.status(500).send({ message: err });
+				else{
+					return res.jsonp(classroom);
+				}
+			})
+		}
+		else
+			return res.jsonp(clsroom);
 	});
 }
 
-exports.associateStudent = function(req, res) {
+exports.associateStudent = function(req, res) {	
 	var classroom = req.classroom;
-	
-	classroom.users.push(req.body);
+	classroom.users.push(req.user);
 	classroom.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: err
 			});
 		} else {
-			res.jsonp(classroom);
+			res.jsonp(req.user);
 		}
 	});
 }
