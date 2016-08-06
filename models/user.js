@@ -10,7 +10,6 @@ var mongoose = require('mongoose')
 require('mongoose-moment')(mongoose);
 
 var bcrypt = require('bcrypt');
-
 var schema = mongoose.Schema({
 	email: {type: String, required: true, trim: true, unique: true},
 	password: {type: String, required: false},
@@ -21,7 +20,10 @@ var schema = mongoose.Schema({
 	last_name: {type: String, default: null},
 	gender: {type: String, default: null},
 	age: {type: Number, default: null},
-	school: {type: String, default:null},
+	school: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'School'
+	},
 	currentYear: {type: Number, default: 1},
 
   roles: {
