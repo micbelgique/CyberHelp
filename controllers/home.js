@@ -29,18 +29,12 @@ exports.root = function(req, res) {
 		return res.redirect('/en/');
 }
 
-
-
 exports.index = function(req, res) {
-
-
 	res.render('index', {
 		title: '',
 		name: 'Joao'
 	});
 };
-
-
 
 exports.mission = function(req, res) { return res.render('main/mission', {}) }
 exports.currentcause = function(req, res) { return res.render('main/currentcause', {}) }
@@ -111,8 +105,6 @@ exports.contactPost = function(req, res){
 	});
 }
 
-
-
 exports.customers = function(req, res) {
 	return res.render('customers', {});
 }
@@ -142,7 +134,6 @@ exports.privacy = function(req, res){
 var request = require('request');
 
 exports.superadmin = function(req, res){
-
 	request('http://localhost:3001/api/schools', 
 		function (error, response, body) {
 
@@ -155,8 +146,6 @@ exports.superadmin = function(req, res){
 	  }
 	})
 }
-
-
 
 exports.director = function(req, res){
 	res.render('main/director', {

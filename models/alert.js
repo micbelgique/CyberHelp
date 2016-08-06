@@ -1,7 +1,19 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-	status: String,
+	alertType: {
+		type: {
+			type: Number,
+			enum: [1, 2, 3]
+		}
+	},
+	status: {
+		type: {
+			type: string,
+			enum: ['open', 'accepted', 'inprogress', 'closed']
+		},
+		default: 'open'
+	},
 	message: String,
 	user: {
 		type: mongoose.Schema.ObjectId,

@@ -188,6 +188,7 @@ require('./routes/_api/products')(app);
 require('./routes/_api/schools')(app);
 require('./routes/_api/classrooms')(app);
 require('./routes/_api/members')(app);
+require('./routes/_api/alerts')(app);
 
 app.get('/auth/facebook', function(req, res, next){
 		var query = req.query.myQuery;
