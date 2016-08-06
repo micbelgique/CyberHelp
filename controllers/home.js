@@ -138,24 +138,22 @@ exports.privacy = function(req, res){
 	res.render('main/privacy');
 }
 
+
+var request = require('request');
+
 exports.superadmin = function(req, res){
 
-	School
-		.find({})
-		// .populate('classrooms')
-		.exec(function(err, schools) {
-			if (err) {
-				return res.status(500).send({
-					message: err
-				});
-			} else {
-				console.log(schools)
-				res.render('main/superadmin', {
-					schools : schools
-				});
-			}
+	request('http://localhost:3001/api/schools', 
+		function (error, response, body) {
+
+	  console.log(body);
+	  if (!error && response.statusCode == 200) {
+	  	console.log('okay');
+	    res.render('main/superadmin', {
+			schools : body
 		});
-	
+	  }
+	})
 }
 
 exports.superadminPost = function(req, res) {

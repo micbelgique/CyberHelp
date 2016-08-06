@@ -33,6 +33,9 @@ module.exports = function(app) {
 	app.route('/:lng(fr|nl|en)/privacy_policy')
 		.get(home.privacy)
 
+	app.route('/products')
+		.get(members.isAuth, home.products);
+
 	app.route('/:lng(fr|nl|en)/404').get(home.notFound);
 	app.route('/:lng(fr|nl|en)/505').get(home.error505);
 }
