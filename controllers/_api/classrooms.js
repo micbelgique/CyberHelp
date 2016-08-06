@@ -9,13 +9,15 @@ var mongoose = require('mongoose'),
 	User = require('../../models/user.js'),
 	_ = require('lodash');
 
+var jwt = require('jsonwebtoken');
+var settings = require('../../config/settings');
+
 /**
  * Create a customer
  */
 exports.create = function(req, res) {
-	console.log(req.body);
+	console.log(req.body)
 	var classroom = new Classroom(req.body);
-	
 	classroom.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -24,11 +26,40 @@ exports.create = function(req, res) {
 		} else {
 			console.log(classroom);
 			req.school.classrooms.push(classroom);
-			req.school.save(function(err){
-				if (err) 
-					return res.status(400).send({ message: err });
-				 else 
-				 	return res.jsonp(classroom);
+			req.school.save();
+	 		
+	 		var _u = {
+				email: req.body.email,
+				password: req.body.password,
+				roles: ['teacher']
+			}
+
+			var user = new User(_u);
+			
+			user.password = user.generateHash(req.body.password);
+			var token = jwt.sign(user.email, settings.jwtSecret, {
+			  expiresIn: settings.expiresTimeJwt // in seconds
+			});
+			user.jwttoken = 'JWT ' + token;
+
+			user.classroom = classroom;
+			user.school = req.school;
+
+			console.log(' ')
+			console.log(user);
+			console.log(' -- ');
+			user.save(function(err) {
+				if (err) {
+					console.log(err);
+					return res.status(400).send({
+						message: err
+					});
+				} else {
+					classroom.users.push(user)
+					classroom.save(function(err){
+						return res.jsonp(user);
+					})
+				}
 			});
 		}
 	});
