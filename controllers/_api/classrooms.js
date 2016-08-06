@@ -36,6 +36,10 @@ exports.create = function(req, res) {
 
 
 exports.createStudent = function(req, res) {
+	
+	console.log('create student')
+	console.log(req.body);
+
 	var user = new User(req.body);
 	
 	user.save(function(err) {
@@ -51,7 +55,6 @@ exports.createStudent = function(req, res) {
 		}
 	});
 }
-
 
 /**
  * Show the current classroom

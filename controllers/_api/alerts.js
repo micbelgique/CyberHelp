@@ -5,13 +5,13 @@
  */
 var mongoose = require('mongoose'),
 	Alert = require('../../models/alert.js'),
+	Classroom = require('../../models/classroom.js'),
 	_ = require('lodash');
 
 /**
  * Create a customer
  */
 exports.create = function(req, res) {
-
 	var alert = new Alert(req.body);
 	alert.user = req.user;
 
@@ -74,8 +74,6 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) {
 	Alert
 		.find({})
-		.sort('-created')
-		.populate('user')
 		.exec(function(err, alerts) {
 			if (err) {
 				return res.status(500).send({
@@ -87,6 +85,24 @@ exports.list = function(req, res) {
 		});
 };
 
+exports.listByClass = function(req, res) {
+	Alert
+		.find()
+		.populate('user')
+		.exec(function(err, alerts) {
+			if (err) {
+				return res.status(500).send({
+					message: err
+				});
+			} else {
+				var xxx = _.filter(alerts, function(a) { 	
+					return a.user.classroom+'' === req.params['classroomId']; 
+				});
+
+				return res.jsonp({alerts: xxx, count: xxx.length});
+			}
+	});
+};
 
 /**
  * Alert middleware
