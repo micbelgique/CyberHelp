@@ -167,9 +167,37 @@ exports.superadminPost = function(req, res) {
 		} else {
 			res.redirect('superadmin');
 		}
-	});
-	
+	})
 }
+
+	exports.director = function(req, res){
+
+	request('http://localhost:3001/api/directors', 
+		function (error, response, body) {
+
+	  console.log(body);
+	  if (!error && response.statusCode == 200) {
+	  	console.log('okay');
+	    res.render('main/director', {
+			teachers : body
+		});
+	  }
+	})
+}
+
+exports.directorPost = function(req, res) {
+	var teacher = new Teacher(req.body);
+
+	teacher.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: err
+			});
+		} else {
+			res.redirect('director');
+		}
+	})
+};
 
 
 

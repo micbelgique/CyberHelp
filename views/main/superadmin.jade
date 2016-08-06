@@ -22,14 +22,8 @@ block content
 				.form-group
 					label.col-sm-2.control-label(for='inputType') Type
 					.col-sm-10
-						input#inputType.form-control(type='text', ng-model='current.type',
+						input#inputType.form-control(type='text', ng-model='current.address',
 							placeholder='type du produit')
-
-				.form-group
-					label.col-sm-2.control-label(for='inputPriceSale') Prix de vente
-					.col-sm-10
-						input#inputPriceSale.form-control(type='number', ng-model='current.price',
-							placeholder="prix de vente")
 
 
 				.form-group
@@ -45,18 +39,13 @@ block content
 			table.table.table-striped
 				thead
 					th #
-					th user
-					th Nom
-					th Type
-					th Prix de vente
+					th School name
+					th Address
 
 				tr(ng-repeat="school in schools")
 					td .
-					td {{school.user.email}}
 					td {{school.name}}
-					td {{school.type}}
-					td(ng-if="school.price") {{school.price}}€
-					td(ng-if="!school.price") sur demande
+					td {{school.address}}
 					td
 						button.btn.btn-primary.btnEdit(type="button",
 							ng-click="edit(school)") Modifier

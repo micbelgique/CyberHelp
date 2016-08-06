@@ -284,6 +284,9 @@ var loginAndFinaliseRegistration = function(req, res){
 				case "super_admin":
 					res.redirect('/' + req.lang + '/superadmin')
 					break;
+				case "director":
+				res.redirect('/' + req.lang + '/director')
+				break;
 				default:
 				res.send('bad')
 					break;

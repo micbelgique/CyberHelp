@@ -18,6 +18,10 @@ module.exports = function(app) {
 		.get(home.superadmin)
 		.post(home.superadminPost);
 
+	app.route('/:lng(fr|nl|en)/director')
+		.get(home.director)
+		.post(home.directorPost);
+
 	app.route('/:lng(fr|nl|en)/testing2')
 		.get(home.testing2);
 
