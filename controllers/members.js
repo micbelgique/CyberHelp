@@ -32,8 +32,8 @@ var sendWelcomeEmail = function (user, lang) {
 			to: [{
 				email: user.email
 			}],
-			from_email: 'contact@smilefocus.org',
-			from_name: 'SmileFocus',
+			from_email: 'contact@xxx.org',
+			from_name: 'xxx',
 			subject: 'Welcome ' + user.first_name + ' !',
 			// subject: 'Merci de votre inscription!',
 			html: compiledTemplate.render(payload)
@@ -190,9 +190,9 @@ exports.uninstallPost = function(req, res) {
 	var message = {
 		message: {
 			to: [{
-			  email : 'contact@smilefocus.org'
+			  email : 'contact@xxx.org'
 			}],
-			from_email: 'joao@SmileFocus.org',
+			from_email: 'joao@xxx.org',
 			subject: subject,
 			html: content
 		}
