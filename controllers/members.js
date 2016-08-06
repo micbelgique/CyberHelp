@@ -287,6 +287,9 @@ var loginAndFinaliseRegistration = function(req, res){
 				case "director":
 				res.redirect('/' + req.lang + '/director')
 				break;
+				case "teacher":
+					res.redirect('/' + req.lang + '/teacher')
+					break;
 				default:
 				res.send('bad')
 					break;

@@ -24,6 +24,10 @@ var schema = mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'School'
 	},
+	classroom: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'Classroom'
+	},
 	currentYear: {type: Number, default: 1},
 
   roles: {

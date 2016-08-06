@@ -113,7 +113,7 @@ exports.getStudents = function(req, res) {
 			Classroom.populate(clsroom[0], {path: 'users'}, function(err, classroom){
 				if(err) return res.status(500).send({ message: err });
 				else{
-					return res.jsonp(classroom);
+					return res.jsonp(classroom.users);
 				}
 			})
 		}

@@ -1,0 +1,65 @@
+extends ../layout
+
+block content
+	h1 Students
+
+	div(ng-app='crm_app' ng-controller='StudentsCtrl', ng-init='find()', ng-cloak='')
+
+		
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+
+		input(type="hidden", value="#{schoolId}", id="schoolId")
+		input(type="hidden", value="#{classroomId}", id="classroomId")
+
+		.editForm(ng-show="showForm")
+			form.form-horizontal
+				.form-group
+					label.col-sm-2.control-label(for='inputName') Year
+					.col-sm-10
+						input#inputName.form-control(type='text', ng-model='current.year',
+							placeholder='Year')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Student name
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.name',
+							placeholder='Student name')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Teacher name
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.prof',
+							placeholder='Teacher name')
+
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type='submit', ng-click='submitNew()',
+							ng-if="!isEditing") Ajouter nouveau
+						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+							ng-if="isEditing") Editer
+
+
+
+		div(ng-show="!showForm")
+			table.table.table-striped
+				thead
+					th #
+					th Firstname
+					th Lastname
+
+				tr(ng-repeat="student in Students")
+					td .
+					td {{student.first_name}}
+					td {{student.last_name}}
+					td
+						button.btn.btn-primary.btnEdit(type="button",
+							ng-click="edit(student)") Modifier
+						button.btn.btn-danger(type="button",
+							ng-click="delete(student)") Supprimer
+
+
+
+	script(src="/mods/app.js")
+	script(src="/mods/services/service.student.js")
+	script(src="/mods/controllers/StudentsCtrl.js")
