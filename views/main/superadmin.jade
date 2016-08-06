@@ -1,36 +1,34 @@
 extends ../layout
 
 block content
-	h1 Schools
+	h1 Schools list
 
 
 	div(ng-app='crm_app' ng-controller='SchoolsCtrl', ng-init='find()', ng-cloak='')
 
-		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
-		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") Add
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") <
 
 		.editForm(ng-show="showForm")
-
-			p {{current}}
 			form.form-horizontal
 				.form-group
-					label.col-sm-2.control-label(for='inputName') Nom
+					label.col-sm-2.control-label(for='inputName') School name
 					.col-sm-10
 						input#inputName.form-control(type='text', ng-model='current.name',
-							placeholder='nom du produit')
+							placeholder='School name')
 
 				.form-group
-					label.col-sm-2.control-label(for='inputType') Type
+					label.col-sm-2.control-label(for='inputType') Address
 					.col-sm-10
 						input#inputType.form-control(type='text', ng-model='current.address',
-							placeholder='type du produit')
+							placeholder='Address')
 
 
 				.form-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-default(type='submit', ng-click='submitNew()',
+						button.btn.btn-primary(type='submit', ng-click='submitNew()',
 							ng-if="!isEditing") Ajouter nouveau
-						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+						button.btn.btn-primary(type='submit', ng-click='submitEdit()',
 							ng-if="isEditing") Editer
 
 

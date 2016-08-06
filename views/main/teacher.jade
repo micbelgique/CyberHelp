@@ -1,47 +1,43 @@
 extends ../layout
 
 block content
-	h1 Students
+	h1 Students list
 
 	div(ng-app='crm_app' ng-controller='StudentsCtrl', ng-init='find()', ng-cloak='')
 
 		
-		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
-		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm && !showAlertsList") Add
+		button.btn.btn-primary(type="button", ng-click="showAlertsList=!showAlertsList; showForm=false", ng-show="!showForm") Alerts list
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") <
 
 		input(type="hidden", value="#{schoolId}", id="schoolId")
 		input(type="hidden", value="#{classroomId}", id="classroomId")
 
-		.editForm(ng-show="showForm")
+		.editForm(ng-show="showForm && !showAlertsList")
 			form.form-horizontal
 				.form-group
-					label.col-sm-2.control-label(for='inputName') Year
+					label.col-sm-2.control-label(for='inputName') lastname
 					.col-sm-10
-						input#inputName.form-control(type='text', ng-model='current.year',
-							placeholder='Year')
+						input#inputName.form-control(type='text', ng-model='current.last_name',
+							placeholder='lastname')
 
 				.form-group
-					label.col-sm-2.control-label(for='inputType') Student name
+					label.col-sm-2.control-label(for='inputType') Firstname
 					.col-sm-10
-						input#inputType.form-control(type='text', ng-model='current.name',
-							placeholder='Student name')
-
-				.form-group
-					label.col-sm-2.control-label(for='inputType') Teacher name
-					.col-sm-10
-						input#inputType.form-control(type='text', ng-model='current.prof',
-							placeholder='Teacher name')
+						input#inputType.form-control(type='text', ng-model='current.first_name',
+							placeholder='firstname')
 
 				.form-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-default(type='submit', ng-click='submitNew()',
+						button.btn.btn-primary(type='submit', ng-click='submitNew()',
 							ng-if="!isEditing") Ajouter nouveau
-						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+						button.btn.btn-primary(type='submit', ng-click='submitEdit()',
 							ng-if="isEditing") Editer
 
 
 
-		div(ng-show="!showForm")
+
+		div(ng-show="!showForm  && !showAlertsList")
 			table.table.table-striped
 				thead
 					th #
@@ -57,6 +53,19 @@ block content
 							ng-click="edit(student)") Modifier
 						button.btn.btn-danger(type="button",
 							ng-click="delete(student)") Supprimer
+
+		div(ng-show="showAlertsList")
+			table.table.table-striped
+				thead
+					th #
+					th Status
+					th Message
+
+				tr(ng-repeat="alert in Alerts")
+					td .
+					td {{alert.status}}
+					td {{alert.message}}
+					td
 
 
 

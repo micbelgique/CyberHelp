@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title= title
+		title= CyberHelp
 		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
 		link(rel='stylesheet', href='/css/style.css')
 		script(src='https://npmcdn.com/react@15.3.0/dist/react.min.js')
@@ -9,10 +9,12 @@ html
 		script(src='https://code.jquery.com/jquery-3.1.0.min.js')
 		script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
 		script(src='/js/table_checkbox.js')
+		link(rel='stylesheet', href='/css/font-awesome-4.6.3/css/font-awesome.min.css')
 	body
 		.row
 			.col-md-6
-				a.navbar-brand(href='/') Cyber Harcelement
+				a(href='/')
+					img.img_logo(href='/', alt="Brand", src='/img/CyberHelpLogo.jpg')
 			.col-md-6.text-right
 				.btn-group
 					//- we check if the user is logged (info provided by our middleware)
@@ -21,8 +23,11 @@ html
 							span.glyphicon.glyphicon-log-in
 								|  Login
 						a.btn.btn-default(type='button', href='/#{lang}/members/register_smile')
-							span.glyphicon.glyphicon-star
+							i.fa.fa-user-plus(aria-hidden='true')
 								|  Register
+
+
+
 					else
 						if picture
 							img(src='#{picture}', alt='myphoto', style='margin-left:15px;')

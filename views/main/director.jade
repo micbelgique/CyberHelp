@@ -1,13 +1,13 @@
 extends ../layout
 
 block content
-	h1 Classrooms
+	h1 Classrooms list
 
 	div(ng-app='crm_app' ng-controller='ClassroomsCtrl', ng-init='find()', ng-cloak='')
 
 		
-		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") CreateNew
-		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") X
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") Add
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") <
 
 		input(type="hidden", value="#{schoolId}", id="schoolId")
 		.editForm(ng-show="showForm")
@@ -32,9 +32,9 @@ block content
 
 				.form-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-default(type='submit', ng-click='submitNew()',
+						button.btn.btn-primary(type='submit', ng-click='submitNew()',
 							ng-if="!isEditing") Ajouter nouveau
-						button.btn.btn-default(type='submit', ng-click='submitEdit()',
+						button.btn.btn-primary(type='submit', ng-click='submitEdit()',
 							ng-if="isEditing") Editer
 
 

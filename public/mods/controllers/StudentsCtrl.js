@@ -7,12 +7,16 @@ angular.module('crm_app')
 			$http.defaults.withCredentials = true;
 
 			$scope.Students = [];
+			$scope.Alerts = [];
 			$scope.current = {};
 			$scope.isEditing = false;
 
 			$scope.find = function() {
 				Student.query({}, function(Students) {
 					$scope.Students = Students;
+				});
+				Alert.query({}, function(Alerts) {
+					$scope.Alerts = Alerts;
 				});
 			};
 

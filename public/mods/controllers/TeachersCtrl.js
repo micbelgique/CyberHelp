@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('crm_app')
-	.controller('teachersCtrl', ['$scope', 'Teacher', '$http',
-		function($scope, Teacher, $http) {
+	.controller('teachersCtrl', ['$scope', 'Teacher', 'Alert', '$http',
+		function($scope, Teacher, Alert, $http) {
 
 			$http.defaults.withCredentials = true;
 
