@@ -5,7 +5,11 @@
  */
 var mongoose = require('mongoose'),
 	School = require('../../models/school.js'),
+	User = require('../../models/user.js'),
 	_ = require('lodash');
+
+var jwt = require('jsonwebtoken');
+var settings = require('../../config/settings');
 
 /**
  * Create a customer
@@ -19,7 +23,25 @@ exports.create = function(req, res) {
 				message: err
 			});
 		} else {
-			return res.jsonp(school);
+
+			var _u = {
+				email: req.body.email,
+				password: req.body.password,
+				roles: ['director']
+			}
+
+			var user = new User(_u);
+
+			user.password = user.generateHash(req.body.password);
+			var token = jwt.sign(user.email, settings.jwtSecret, {
+			  expiresIn: settings.expiresTimeJwt // in seconds
+			});
+			user.jwttoken = 'JWT ' + token;
+
+			user.school = school;
+			user.save(function(err) {
+				return res.jsonp(school);	
+			})
 		}
 	});
 };

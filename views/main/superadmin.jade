@@ -24,6 +24,22 @@ block content
 							placeholder='Address')
 
 
+				br
+				br
+
+				.form-group
+					label.col-sm-2.control-label(for='inputEmail') Director email
+					.col-sm-10
+						input#inputEmail.form-control(type='text', ng-model='current.email',
+							placeholder='Director email')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputPassword') Director password
+					.col-sm-10
+						input#inputPassword.form-control(type='text', ng-model='current.password',
+							placeholder='Director password')
+
+
 				.form-group
 					.col-sm-offset-2.col-sm-10
 						button.btn.btn-primary(type='submit', ng-click='submitNew()',

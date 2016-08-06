@@ -17,13 +17,13 @@ module.exports = function(app) {
 		.delete(members.isAuthApi, schools.delete);
 
 	app.route('/api/schools/:schoolId/classrooms')
-		.get( classrooms.list)
-		.post( classrooms.create);
+		.get(classrooms.list)
+		.post(classrooms.create);
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId')
 		.get(classrooms.read)
-		.put( classrooms.update)
-		.delete( classrooms.delete);
+		.put(classrooms.update)
+		.delete(classrooms.delete);
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students')
 		.get(classrooms.getStudents)
@@ -31,7 +31,6 @@ module.exports = function(app) {
 
 	app.route('/api/schools/:schoolId/classrooms/:classroomId/students/:userId')
 		.post(classrooms.associateStudent);
-
 
 	app.param('schoolId', schools.schoolByID);
 	app.param('classroomId', classrooms.classroomByID);
