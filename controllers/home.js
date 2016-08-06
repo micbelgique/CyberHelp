@@ -170,19 +170,21 @@ exports.superadminPost = function(req, res) {
 	})
 }
 
-	exports.director = function(req, res){
+exports.director = function(req, res){
+	res.render('main/director', {
+		schoolId: req.user.school
+	});
+	// request('http://localhost:3001/api/schools/'+req.user.school+'/classrooms', 
+	// 	function (error, response, body) {
 
-	request('http://localhost:3001/api/directors', 
-		function (error, response, body) {
+	//   if (!error && response.statusCode == 200) {
 
-	  console.log(body);
-	  if (!error && response.statusCode == 200) {
-	  	console.log('okay');
-	    res.render('main/director', {
-			teachers : body
-		});
-	  }
-	})
+	//     res.render('main/director', {
+	// 		teachers : body
+	// 	});
+
+	//   }
+	// })
 }
 
 exports.directorPost = function(req, res) {

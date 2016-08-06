@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('crm_app')
-	.controller('teachersCtrl', ['$scope', 'Teacher', '$http',
-		function($scope, Teacher, $http) {
+	.controller('ClassroomsCtrl', ['$scope', 'Classroom', '$http',
+		function($scope, Classroom, $http) {
 
 			$http.defaults.withCredentials = true;
 
-			$scope.teachers = [];
+			$scope.classrooms = [];
 			$scope.current = {};
 			$scope.isEditing = false;
 
 			$scope.find = function() {
-				Teacher.query({}, function(teachers) {
-					$scope.teachers = teachers;
+				Classroom.query({}, function(classrooms) {
+					$scope.classrooms = classrooms;
 				});
 			};
 
@@ -20,8 +20,8 @@ angular.module('crm_app')
 				if ($scope.current['_id'])
 					return;
 
-				//save New Teacher
-				var c = new Teacher($scope.current);
+				//save New Classroom
+				var c = new Classroom($scope.current);
 				c.$save(
 					function(data) {
 						if (data.message) alert(data.message)
@@ -36,7 +36,7 @@ angular.module('crm_app')
 				if (!$scope.current['_id'])
 					return;
 
-				var c = new Teacher($scope.current);
+				var c = new Classroom($scope.current);
 				c.$update(
 					function(data) {
 						if (data.message) alert(data.message)
@@ -66,7 +66,7 @@ angular.module('crm_app')
 					return
 				else {
 
-					c = new Teacher(c);
+					c = new Classroom(c);
 					c.$delete(
 						function(data) {
 							if (data.message) alert(data.message)

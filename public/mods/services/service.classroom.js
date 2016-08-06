@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('crm_app').factory('Teacher', ['$resource',
+var schoolId = $('#schoolId').val();
+
+angular.module('crm_app').factory('Classroom', ['$resource',
 	function($resource) {
-		return $resource('/api/teachers/:teacherId', {
-			schoolId: '@_id'
+		return $resource('/api/schools/'+schoolId+'/classrooms', {
+			classroomId: '@_id'
 		}, {
 			update: {
 				method: 'PUT',

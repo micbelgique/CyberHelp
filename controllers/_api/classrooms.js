@@ -78,7 +78,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
 	School.populate(req.school, {path:"classrooms"}, function(err, school) {
-		res.jsonp(school);
+		res.jsonp(school.classrooms);
 	});
 };
 
