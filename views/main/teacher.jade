@@ -60,7 +60,7 @@ block content
 					th Lastname
 					th Email
 
-				tr(ng-repeat="student in Students")
+				tr(ng-repeat="student in students")
 					td .
 					td {{student.first_name}}
 					td {{student.last_name}}
@@ -77,14 +77,21 @@ block content
 					th #
 					th Status
 					th Message
+					th Actions
+					th Doodle
 
-				tr(ng-repeat="alert in Alerts")
+				tr(ng-repeat="alert in alerts")
 					td .
 					td {{alert.status}}
 					td {{alert.message}}
 					td
-
-
+						button.btn.btn-success.btnEdit(type="button",
+							ng-click="validate(alert)") Accepter
+						button.btn.btn-danger(type="button",
+							ng-click="refuse(alert)") Refuser
+					td(ng-if="alert.status == 'accepted' ")
+						a(href='http://doodle.com/create?type=date&locale=fr&title=Blockbuster%20%20Prequel		&name=Peter%20%20Muster&description=vouvou', target="_blank")
+							button.btn.btn-primary(type="button") Lien Doodle
 
 	script(src="/mods/app.js")
 	script(src="/mods/services/service.student.js")

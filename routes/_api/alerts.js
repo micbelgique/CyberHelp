@@ -6,11 +6,11 @@ module.exports = function(app) {
 	var passport = require('passport');
 
 	app.route('/api/alerts')
-		.get(passport.authenticate('jwt', { session: false}), alerts.list)
-		.post(passport.authenticate('jwt', { session: false}), alerts.create);
+		.get(passport.authenticate('jwt', { session: true}), alerts.list)
+		.post(passport.authenticate('jwt', { session: true}), alerts.create);
 
 	app.route('/api/alerts/classroom/:classroomId')
-		.get(alerts.listByClass);
+		.get(passport.authenticate('jwt', { session: true}), alerts.listByClass);
 
 	app.route('/api/alerts/:alertId')
 		.get(alerts.read)
