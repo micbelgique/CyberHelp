@@ -8,6 +8,6 @@ a {
 }
 
 .img_logo {
-	height: 2em;
-	width: 6em;
+	height: 2.08em; /*208 0.13*/ 
+	width: 6.4em; /*640 40*/ 
 }
