@@ -802,12 +802,14 @@ exports.hasAuthorization = function(roles) {
 exports.isAuthApi = function(req, res, next) {
 	// if the user is not auth -> method provided by passport
 	console.log('isAuthApi');
-
+	console.log(" req.auth",req.isAuthenticated());
 	if (!req.isAuthenticated()) {
+		console.log("not authenti")
 		return res.status(403).send({
 			message: 'no rights.'
 		});
 	} else {
+		console.log("next tick")
 		next();
 	}
 }

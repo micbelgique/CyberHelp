@@ -87,13 +87,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(cookieParser());
-app.use(session({
-	secret: 'OuRCRmS3cr3rrt',
-	maxAge: new Date(Date.now() + 3600000),
-	store: new MongoStore({
-		mongooseConnection: mongoose.connection
-	})
-}));
+
 
 /*
     PASSPORT AUTH
@@ -136,16 +130,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
-	// console.log('dude: ' + user);
+	 console.log('dude: ' + user);
 	done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
+	console.log("id",id)
 	User.findById(id, function(err, user) {
 		done(err, user);
 	});
 });
-
+app.use(session({
+	secret: 'OuRCRmS3cr3rrt',
+	maxAge: new Date(Date.now() + 3600000),
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection
+	})
+}));
 passport.use(new FacebookStrategy({
 		clientID: 'xxx',
 		clientSecret: "xxx",
