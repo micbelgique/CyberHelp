@@ -32,8 +32,8 @@ var sendWelcomeEmail = function (user, lang) {
 			to: [{
 				email: user.email
 			}],
-			from_email: 'contact@smilefocus.org',
-			from_name: 'SmileFocus',
+			from_email: 'contact@xxx.org',
+			from_name: 'xxx',
 			subject: 'Welcome ' + user.first_name + ' !',
 			// subject: 'Merci de votre inscription!',
 			html: compiledTemplate.render(payload)
@@ -190,9 +190,9 @@ exports.uninstallPost = function(req, res) {
 	var message = {
 		message: {
 			to: [{
-			  email : 'contact@smilefocus.org'
+			  email : 'contact@xxx.org'
 			}],
-			from_email: 'joao@SmileFocus.org',
+			from_email: 'joao@xxx.org',
 			subject: subject,
 			html: content
 		}
@@ -244,6 +244,7 @@ exports.registerLang = function(req, res) {
 	else
 		return res.redirect('/en/members/register_smile');
 }
+
 exports.register_smile = function(req, res){
 	var user = {
 		password: '',
@@ -274,19 +275,32 @@ exports.loggedfb = function(req, res){
 var loginAndFinaliseRegistration = function(req, res){
 
 	// sendWelcomeEmail(req.user, req.lang);
-	console.log('facile facile.')
-
 	req.login(req.user, function(err) {
 		if (err) {
-			res.render('500');
+			res.render('500')
 		} else {
-
-			return res.render('index', {
-				token: req.user.jwttoken,
-				userm: req.user.email,
-				categories: req.user.categories,
-				userid: req.user._id
-			});
+			switch(req.user.roles[0])
+			{
+				case "super_admin":
+					res.redirect('/' + req.lang + '/superadmin')
+					break;
+				case "director":
+				res.redirect('/' + req.lang + '/director')
+				break;
+				case "teacher":
+					res.redirect('/' + req.lang + '/teacher')
+					break;
+				default:
+				res.send('bad')
+					break;
+			}
+			// return res.render('index', {
+			// 	roles: ,
+			// 	token: req.user.jwttoken,
+			// 	userm: req.user.email,
+			// 	categories: req.user.categories,
+			// 	userid: req.user._id
+			// });
 		}
 	});
 }
@@ -787,11 +801,15 @@ exports.hasAuthorization = function(roles) {
 
 exports.isAuthApi = function(req, res, next) {
 	// if the user is not auth -> method provided by passport
+	console.log('isAuthApi');
+	console.log(" req.auth",req.isAuthenticated());
 	if (!req.isAuthenticated()) {
+		console.log("not authenti")
 		return res.status(403).send({
-			message: 'no rights'
+			message: 'no rights.'
 		});
 	} else {
+		console.log("next tick")
 		next();
 	}
 }

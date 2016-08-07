@@ -14,6 +14,15 @@ module.exports = function(app) {
 	app.route('/:lng(fr|nl|en)/testing')
 		.get(home.testing);
 
+	app.route('/:lng(fr|nl|en)/superadmin')
+		.get(home.superadmin);
+
+	app.route('/:lng(fr|nl|en)/director')
+		.get(home.director);
+
+	app.route('/:lng(fr|nl|en)/teacher')
+		.get(home.teacher);
+
 	app.route('/:lng(fr|nl|en)/testing2')
 		.get(home.testing2);
 
@@ -28,6 +37,9 @@ module.exports = function(app) {
 
 	app.route('/:lng(fr|nl|en)/privacy_policy')
 		.get(home.privacy)
+
+	app.route('/products')
+		.get(members.isAuth, home.products);
 
 	app.route('/:lng(fr|nl|en)/404').get(home.notFound);
 	app.route('/:lng(fr|nl|en)/505').get(home.error505);

@@ -1,0 +1,81 @@
+extends ../layout
+
+block content
+	h1 Classrooms list
+
+	div(ng-app='crm_app' ng-controller='ClassroomsCtrl', ng-init='find()', ng-cloak='')
+
+		
+		button.btn.btn-primary(type="button", ng-click="showForm=true", ng-show="!showForm") Add
+		button.btn.btn-danger.cancelBtn(type="button", ng-click="cancel()", ng-if="showForm") <
+
+		input(type="hidden", value="#{schoolId}", id="schoolId")
+		.editForm(ng-show="showForm")
+			form.form-horizontal
+				.form-group
+					label.col-sm-2.control-label(for='inputName') Year
+					.col-sm-10
+						input#inputName.form-control(type='text', ng-model='current.year',
+							placeholder='Year')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Classroom name
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.name',
+							placeholder='Classroom name')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputType') Teacher name
+					.col-sm-10
+						input#inputType.form-control(type='text', ng-model='current.prof',
+							placeholder='Teacher name')
+
+				br
+				br
+
+				.form-group
+					label.col-sm-2.control-label(for='inputEmail') Teacher email
+					.col-sm-10
+						input#inputEmail.form-control(type='text', ng-model='current.email',
+							placeholder='Teacher email')
+
+				.form-group
+					label.col-sm-2.control-label(for='inputPassword') Teacher password
+					.col-sm-10
+						input#inputPassword.form-control(type='text', ng-model='current.password',
+							placeholder='Teacher password')
+
+
+				.form-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-primary(type='submit', ng-click='submitNew()',
+							ng-if="!isEditing") Ajouter nouveau
+						button.btn.btn-primary(type='submit', ng-click='submitEdit()',
+							ng-if="isEditing") Editer
+
+
+
+		div(ng-show="!showForm")
+			table.table.table-striped
+				thead
+					th #
+					th Year
+					th Classroom name
+					th Teacher name
+
+				tr(ng-repeat="classroom in classrooms")
+					td .
+					td {{classroom.year}}
+					td {{classroom.name}}
+					td {{classroom.prof}}
+					td
+						button.btn.btn-primary.btnEdit(type="button",
+							ng-click="edit(classroom)") Modifier
+						button.btn.btn-danger(type="button",
+							ng-click="delete(classroom)") Supprimer
+
+
+
+	script(src="/mods/app.js")
+	script(src="/mods/services/service.classroom.js")
+	script(src="/mods/controllers/ClassroomsCtrl.js")

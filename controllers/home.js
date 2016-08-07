@@ -1,5 +1,8 @@
 'use strict';
-var mandrill = require('node-mandrill')('cqquNxU71EL77FsQJcKH3w');
+var mandrill = require('node-mandrill')('xxx');
+
+var mongoose = require('mongoose'),
+	School = require('../models/school.js');
 
 exports.root = function(req, res) {
 
@@ -26,18 +29,12 @@ exports.root = function(req, res) {
 		return res.redirect('/en/');
 }
 
-
-
 exports.index = function(req, res) {
-	console.log(req.i18n.__("Hello"));
-
 	res.render('index', {
-		title: 'Express',
+		title: '',
 		name: 'Joao'
 	});
 };
-
-
 
 exports.mission = function(req, res) { return res.render('main/mission', {}) }
 exports.currentcause = function(req, res) { return res.render('main/currentcause', {}) }
@@ -57,8 +54,6 @@ exports.contact = function(req, res){
 }
 
 exports.contactPost = function(req, res){
-	
-	// console.log(req.body.email);
 
 	if(!req.body.email){
 		return res.redirect('/' + req.lang + '/contact')
@@ -71,7 +66,7 @@ exports.contactPost = function(req, res){
 	var subject = "Contact Form";
 
 	if(req.body.bug)
-		subject = "Bug on SimeFocus";
+		subject = "Bug on website";
 
 	if(req.body.media)
 		subject = "MEDIA contact";
@@ -87,7 +82,7 @@ exports.contactPost = function(req, res){
 	var message = {
 		message: {
 			to: [{
-			  email : 'contact@smilefocus.org'
+			  email : 'contact@xxx.org'
 			}],
 			from_email: req.body.email,
 			subject: subject,
@@ -109,8 +104,6 @@ exports.contactPost = function(req, res){
 		}
 	});
 }
-
-
 
 exports.customers = function(req, res) {
 	return res.render('customers', {});
@@ -136,5 +129,38 @@ exports.error505 = function(req, res) {
 exports.privacy = function(req, res){
 	res.render('main/privacy');
 }
+
+
+var request = require('request');
+
+exports.superadmin = function(req, res){
+	request('http://localhost:3001/api/schools', 
+		function (error, response, body) {
+
+	  console.log(body);
+	  if (!error && response.statusCode == 200) {
+	  	console.log('okay');
+	    res.render('main/superadmin', {
+			schools : body
+		});
+	  }
+	})
+}
+
+exports.director = function(req, res){
+	res.render('main/director', {
+		schoolId: req.user.school
+	});
+};
+
+exports.teacher = function(req, res){
+	res.render('main/teacher', {
+		schoolId: req.user.school,
+		classroomId: req.user.classroom
+	});
+};
+
+
+
 
 
