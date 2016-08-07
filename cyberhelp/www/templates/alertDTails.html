@@ -1,21 +1,20 @@
 <ion-view title="Alert Détails" id="page2" class=" ">
     <ion-content padding="true" class="has-header">
-        <form id="alertDTails-form1" class="list ">
             <h4 id="alertDTails-heading1" style="color:#000000;font-weight:300;" class=" ">Type de problème :</h4>
+        <form id="alertDTails-form1" class="list ">
             <label class="item item-select " id="alertDTails-select1" name="typeProbleme">
                 <span class="input-label"></span>
-                <select>
-                    <option>Le problème concerne plusieurs écoles</option>
-                    <option>Le problème se déroule au sein de l’école du demandeur</option>
-                    <option>o Le problème se déroule au sein de la classe du demandeur</option>
+                <select ng-model="data.alertType" 
+                    ng-options="typeProblemeOption.title 
+                        for typeProblemeOption in typeProblemeOptions">
                 </select>
             </label>
         </form>
         <form id="alertDTails-form3" class="list ">
             <label class="item item-input " id="alertDTails-textarea2" name="alert-raison">
-                <span class="input-label">Raison</span><textarea placeholder=""></textarea>
+                <span class="input-label">Raison</span><textarea placeholder="" ng-model="data.message"></textarea>
             </label>
         </form>
-        <button id="alertDTails-button2" class=" button button-balanced  button-block ">Envoyer</button>
+        <button id="alertDTails-button2" class=" button button-balanced  button-block " ng-click="sendAlert()">Envoyer</button>
     </ion-content>
 </ion-view>

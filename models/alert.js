@@ -16,8 +16,17 @@ var schema = mongoose.Schema({
 	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'
+	},
+	created_at :{
+		type: Date,
+		default:Date.now
 	}
 });
 
 var Alert = mongoose.model('Alert', schema);
 module.exports = Alert;
+
+
+
+
+// JWT eyJhbGciOiJIUzI1NiJ9.c3R1ZGVudEBjeWJlci5jb20.UGSURW-qNoyrPLXXBpzBkypMJBQ0wdwQnQwVTtykHNo

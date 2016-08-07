@@ -3,10 +3,11 @@
 module.exports = function(app) {
 	var alerts = require('../../controllers/_api/alerts');
 	var members = require('../../controllers/members');
+	var passport = require('passport');
 
 	app.route('/api/alerts')
-		.get(members.isAuthApi, alerts.list)
-		.post(members.isAuthApi, alerts.create);
+		.get(passport.authenticate('jwt', { session: false}), alerts.list)
+		.post(passport.authenticate('jwt', { session: false}), alerts.create);
 
 	app.route('/api/alerts/classroom/:classroomId')
 		.get(alerts.listByClass);

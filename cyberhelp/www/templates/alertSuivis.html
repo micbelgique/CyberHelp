@@ -1,13 +1,17 @@
-<ion-view title="Alert Suivis" id="page3" class=" ">
+<ion-view title="Alert Suivis" id="page3" class=" "ng-init="init()">
     <ion-content padding="true" class="has-header">
         <ion-list id="alertSuivis-list1" class=" ">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="search" placeholder="">
             </label>
-            <ion-item id="alertSuivis-list-item1" class="  ">Item 1</ion-item>
-            <ion-item id="alertSuivis-list-item2" class="  ">Item 2</ion-item>
-            <ion-item id="alertSuivis-list-item3" class="  ">Item 3</ion-item>
+            <ion-item id="alertSuivis-list-item1" class="  "
+                ng-repeat="alert in alerts">
+                Alert (# {{alert._id.substring(0,6)}})  crée le {{ alert.created_at }} est en status
+                {{alert.status}}-
+                {{alert.message }}
+                </ion-item>
+
         </ion-list>
     </ion-content>
 </ion-view>
