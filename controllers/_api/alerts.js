@@ -13,6 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var alert = new Alert(req.body);
+	console.log(req.body);
 	alert.user = req.user;
 
 	alert.save(function(err) {
@@ -72,8 +73,9 @@ exports.delete = function(req, res) {
  * List of Alerts
  */
 exports.list = function(req, res) {
+	console.log("User ", req.user);
 	Alert
-		.find({})
+		.find({"user":req.user._id})
 		.exec(function(err, alerts) {
 			if (err) {
 				return res.status(500).send({

@@ -6,7 +6,7 @@ module.exports = function(app) {
 	var passport = require('passport');
 
 	app.route('/api/alerts')
-		.get(members.isAuthApi, alerts.list)
+		.get(passport.authenticate('jwt', { session: false}), alerts.list)
 		.post(passport.authenticate('jwt', { session: false}), alerts.create);
 
 	app.route('/api/alerts/classroom/:classroomId')
