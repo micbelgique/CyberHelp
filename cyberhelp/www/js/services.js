@@ -3,7 +3,7 @@ angular.module('app.services', [])
 .factory('ApiService', ['$http',function($http){
     var API_URL_LOCAL = "http://localhost:3001/";
     var API_URL_PROD = "http://ec2-52-28-6-186.eu-central-1.compute.amazonaws.com:3001/"
-    var BASE_URL = API_URL_LOCAL;
+    var BASE_URL = API_URL_PROD;
     return {
         login : login,
         sendAlert : sendAlert,
