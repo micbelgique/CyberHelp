@@ -6,9 +6,9 @@
                 <input type="search" placeholder="">
             </label>
             <ion-item id="alertSuivis-list-item1" class="  "
+                ng-class="{ 'greenStuff': alert.status == 'accepted' }"
                 ng-repeat="alert in alerts">
-                Alert (# {{alert._id.substring(0,6)}})  crée le {{ alert.created_at }}<br>
-                 est en status
+                (# {{alert._id.substring(0,6)}})  crée le {{ alert.created_at }}<br>
                 {{alert.status}}-
                 {{alert.message }}
                 </ion-item>
