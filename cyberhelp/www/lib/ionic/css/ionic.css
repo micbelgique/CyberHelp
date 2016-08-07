@@ -25,36 +25,38 @@
 */
 
 #alert-button1 {
-  margin-top: 40px;
+    margin-top: 200px;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 body{margin:40px;}
 
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+.myButton {
+    margin-top: 110px;
+    background-color: red;
+    -moz-border-radius: 42px;
+    -webkit-border-radius: 42px;
+    border-radius: 500px;
+    border: 2px solid red;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 60px 45px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+    -webkit-box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);
+    box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);
 }
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
+.myButton:hover {
+  background-color:#f01818;
 }
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
+.myButton:active {
+  position:relative;
+  top:1px;
 }
 
 

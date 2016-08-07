@@ -37,15 +37,15 @@ function ($scope, $stateParams,ApiService,
 LocalStorageService,$ionicHistory,$state) {
     $scope.typeProblemeOptions = [
         {
-            title : "Le problème concerne plusieurs écoles",
+            title : "Plusieurs écoles",
             value : 1
         },
         {
-            title : "Le problème se déroule au sein de l’école du demandeur",
+            title : "Au sein de mon école",
             value : 2
         },
         {
-            title : "Le problème se déroule au sein de la classe du demandeur",
+            title : "Au sein de ma classe",
             value : 3
         }
         
