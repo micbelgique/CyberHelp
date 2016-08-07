@@ -9,5 +9,9 @@
         <a  id="alert-button1" 
             class=" button button-positive  button-block icon-left ion-alert " 
             ng-click="redirectToAlertSuivis()">Voir mes alerts</a>   
+            <a  id="alert-button1" 
+            ng-if="isAuthenticated()"
+            class=" button button-danger  button-block icon-left ion-alert " 
+            ng-click="logout()">Se déconnecter</a>   
      </ion-content>
 </ion-view>

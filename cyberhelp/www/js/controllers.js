@@ -1,15 +1,17 @@
 angular.module('app.controllers', [])
   
-.controller('alertCtrl', ['$scope', '$stateParams','$state','LocalStorageService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('alertCtrl', ['$scope', '$stateParams','$state','LocalStorageService',
+'$ionicHistory',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$state,LocalStorageService) {
+function ($scope, $stateParams,$state,LocalStorageService,$ionicHistory) {
     var isAuthenticated = function(){   
         if(LocalStorageService.getAuthToken()){
             return true;
         }
         return false;
     }
+    $scope.isAuthenticated = isAuthenticated;
     $scope.redirectToAlertDetails = function(){
         console.log("isAuth",isAuthenticated());
         if(!isAuthenticated()){
@@ -20,9 +22,16 @@ function ($scope, $stateParams,$state,LocalStorageService) {
         }
         
     }
-     $scope.redirectToAlertSuivis = function(){
+    $scope.redirectToAlertSuivis = function(){
         $state.go('alertSuivis', {}, {reload: true});
         
+    }
+    $scope.logout = function(){
+        $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
+        LocalStorageService.removeAuthToken();
+        $state.go('login');
     }
                      
 
