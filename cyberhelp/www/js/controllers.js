@@ -20,6 +20,12 @@ function ($scope, $stateParams,$state,LocalStorageService) {
         }
         
     }
+     $scope.redirectToAlertSuivis = function(){
+        $state.go('alertSuivis', {}, {reload: true});
+        
+    }
+                     
+
 
 }])
    
@@ -31,15 +37,15 @@ function ($scope, $stateParams,ApiService,
 LocalStorageService,$ionicHistory,$state) {
     $scope.typeProblemeOptions = [
         {
-            title : "Le problème concerne plusieurs écoles",
+            title : "Plusieurs écoles",
             value : 1
         },
         {
-            title : "Le problème se déroule au sein de l’école du demandeur",
+            title : "Au sein de mon école",
             value : 2
         },
         {
-            title : "Le problème se déroule au sein de la classe du demandeur",
+            title : "Au sein de ma classe",
             value : 3
         }
         
@@ -100,7 +106,13 @@ function ($scope, $stateParams,$state,ApiService,LocalStorageService,$ionicHisto
         email: "",
         password: ""
     };
-
+    if(LocalStorageService.getAuthToken()){
+       $ionicHistory.nextViewOptions({
+                    disableBack: true
+       });
+       $state.go('alert');  
+           
+    }
     $scope.login = function(){
         console.log(" credentials",$scope.credentials)
         ApiService
@@ -111,7 +123,7 @@ function ($scope, $stateParams,$state,ApiService,LocalStorageService,$ionicHisto
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
-                 $state.go('alertDTails');
+                 $state.go('alert');
             })
             .catch(function(err){
                 console.log("Err ",err)

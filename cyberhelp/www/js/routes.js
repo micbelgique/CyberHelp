@@ -34,7 +34,7 @@ angular.module('app.routes', [])
     controller: 'loginCtrl'
   })
 
-$urlRouterProvider.otherwise('/alert')
+$urlRouterProvider.otherwise('/login')
 
   
 
