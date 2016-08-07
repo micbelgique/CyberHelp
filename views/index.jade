@@ -2,17 +2,13 @@ extends layout
 
 block content
 
-	p Welcome to CyberHelp #{roles}
-
-
-	p if time put fonctionality by role and a please log in
+	p Welcome to CyberHelp
 
 	if roles !== undefined
 		each val in roles
-			p= val
 			if val === 'superadmin'
 				a(href='/#{lang}/superadmin')
-					button.btn.btn-primary(type="button") Ville de Mons
+					button.btn.btn-primary(type="button") Administrateur
 			
 			if val === 'director'
 				a(href='/#{lang}/director')
