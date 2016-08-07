@@ -3,6 +3,7 @@ angular.module('app.services', [])
 .factory('ApiService', ['$http',function($http){
     var API_URL_LOCAL = "http://localhost:3001/";
     var API_URL_PROD = "http://ec2-52-28-6-186.eu-central-1.compute.amazonaws.com:3001/"
+    var BASE_URL = API_URL_LOCAL;
     return {
         login : login,
         sendAlert : sendAlert,
@@ -13,7 +14,7 @@ angular.module('app.services', [])
     function login(credentials){
         var req = {
             method: 'POST',
-            url: API_URL_PROD+"api/members/login",
+            url: BASE_URL+"api/members/login",
             headers: {
             },
             data: credentials
@@ -30,7 +31,7 @@ angular.module('app.services', [])
     function  sendAlert (data, authorizationToken){
         var req = {
             method: 'POST',
-            url: API_URL_PROD+"api/alerts/",
+            url: BASE_URL+"api/alerts/",
             headers: {
                 'Authorization': authorizationToken
             },
@@ -48,7 +49,7 @@ angular.module('app.services', [])
     function getMyAlert(authorizationToken){
          var req = {
             method: 'GET',
-            url: API_URL_PROD+"api/alerts/",
+            url: BASE_URL+"api/alerts/",
             headers: {
                 'Authorization': authorizationToken
             }

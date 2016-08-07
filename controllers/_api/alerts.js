@@ -54,18 +54,18 @@ exports.update = function(req, res) {
 				var bearer ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNWFjNDAzNS0zNGE3LTRjMTgtYWVmOS01YzlhYmY1N2E1MDMifQ.io-z3EyqqhINuudBY3aTlF7n7TwI8_omCktL2qGYrD8";
 				var push = {
 					"user_ids": [alert.ionicToken],
+					 "profile": "test",
 					"notification": {
 						"message":"Hello World!"
 					}
 				}
-
-				//Lets configure and request
+				console.log("Push data" ,push);				//Lets configure and request
 				request({
 					url: 'https://api.ionic.io/push/notifications', //URL to hit
 					method: 'POST',
 					headers: { //We can define headers too
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer '+token
+						'Authorization': 'Bearer '+bearer
 					},
 					//Lets post the following key/values as form
 					json: push
@@ -73,6 +73,7 @@ exports.update = function(req, res) {
 					if(error) {
 						console.log(error);
 					} else {
+						console.log(" Respond sent to ionic platefform",JSON.stringify(body))
 						return res.jsonp(alert);
 					}
 				});
