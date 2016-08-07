@@ -610,7 +610,8 @@ exports.registerPost = function(req, res) {
 
 			user.email = req.body.email;
 			user.password = user.generateHash(req.body.password);
-			user.roles.push('superadmin');
+			user.roles.splice(0, 1)
+			user.roles.push('super_admin');
 
 			user.last = new Moment();
 
