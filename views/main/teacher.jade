@@ -85,12 +85,13 @@ block content
 					td {{alert.status}}
 					td {{alert.message}}
 					td
-						button.btn.btn-successs.btnEdit(type="button",
+						button.btn.btn-success.btnEdit(type="button",
 							ng-click="validate(alert)") Accepter
 						button.btn.btn-danger(type="button",
 							ng-click="refuse(alert)") Refuser
 					td(ng-if="alert.status == 'accepted' ")
-						button.btn.btn-primary(type="button") Lien Doodle
+						a(href='http://doodle.com/create?type=date&locale=fr&title=Blockbuster%20%20Prequel		&name=Peter%20%20Muster&description=vouvou', target="_blank")
+							button.btn.btn-primary(type="button") Lien Doodle
 
 	script(src="/mods/app.js")
 	script(src="/mods/services/service.student.js")

@@ -20,7 +20,7 @@ html
 					//- we check if the user is logged (info provided by our middleware)
 					if !login
 						a.btn.btn-default(type='button', href='/#{lang}/members/login')
-							span.glyphicon.glyphicon-log-in
+							i.fa.fa-sign-in(aria-hidden='true')
 								|  Login
 						a.btn.btn-default(type='button', href='/#{lang}/members/register_smile')
 							i.fa.fa-user-plus(aria-hidden='true')
@@ -34,7 +34,9 @@ html
 
 						//- if email
 						//- 	span #{email}
-						a.btn.btn-default(type='button', href='/#{lang}/members/logout') Logout
+						a.btn.btn-default(type='button', href='/#{lang}/members/logout') 
+							i.fa.fa-sign-out(aria-hidden='true')
+								|  Logout
 
 
 		if message.success

@@ -28,8 +28,6 @@ angular.module('crm_app')
 
 				a.$update(
 					function(data) {
-						if (data.message) alert(data.message)
-
 						$scope.cancel();
 						$scope.find();
 					}
@@ -42,8 +40,6 @@ angular.module('crm_app')
 
 				a.$update(
 					function(data) {
-						if (data.message) alert(data.message)
-
 						$scope.cancel();
 						$scope.find();
 					}
