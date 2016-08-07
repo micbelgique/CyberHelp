@@ -618,7 +618,6 @@ exports.registerPost = function(req, res) {
 			  expiresIn: settings.expiresTimeJwt // in seconds
 			});
 
-
 			user.jwttoken = 'JWT ' + token;
 			user.save(function(err) {
 				if (err) {
