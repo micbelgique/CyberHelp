@@ -20,6 +20,12 @@ function ($scope, $stateParams,$state,LocalStorageService) {
         }
         
     }
+     $scope.redirectToAlertSuivis = function(){
+        $state.go('alertSuivis', {}, {reload: true});
+        
+    }
+                     
+
 
 }])
    
@@ -100,7 +106,13 @@ function ($scope, $stateParams,$state,ApiService,LocalStorageService,$ionicHisto
         email: "",
         password: ""
     };
-
+    if(LocalStorageService.getAuthToken()){
+       $ionicHistory.nextViewOptions({
+                    disableBack: true
+       });
+       $state.go('alert');  
+           
+    }
     $scope.login = function(){
         console.log(" credentials",$scope.credentials)
         ApiService
@@ -111,7 +123,7 @@ function ($scope, $stateParams,$state,ApiService,LocalStorageService,$ionicHisto
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
-                 $state.go('alertDTails');
+                 $state.go('alert');
             })
             .catch(function(err){
                 console.log("Err ",err)
