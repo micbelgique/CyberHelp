@@ -73,9 +73,10 @@ exports.delete = function(req, res) {
  * List of Alerts
  */
 exports.list = function(req, res) {
-	console.log("User ", req.user);
+	//console.log("User ", req.user);
 	Alert
 		.find({"user":req.user._id})
+		.sort('-created_at')
 		.exec(function(err, alerts) {
 			if (err) {
 				return res.status(500).send({
