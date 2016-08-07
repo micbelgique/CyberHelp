@@ -90,7 +90,7 @@ block content
 						button.btn.btn-danger(type="button",
 							ng-click="refuse(alert)") Refuser
 					td(ng-if="alert.status == 'accepted' ")
-						a(href='http://doodle.com/create?type=date&locale=fr&title=Blockbuster%20%20Prequel		&name=Peter%20%20Muster&description=vouvou', target="_blank")
+						a(href='http://doodle.com/create?type=date&locale=fr&title=Blockbuster%20%20Prequel		&name=Peter%20%20Muster&description={{alert.message}}', target="_blank")
 							button.btn.btn-primary(type="button") Lien Doodle
 
 	script(src="/mods/app.js")

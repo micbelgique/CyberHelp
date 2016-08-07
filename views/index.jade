@@ -1,12 +1,22 @@
 extends layout
 
 block content
+
 	p Welcome to CyberHelp
 
-	p if time put fonctionality by role and a please log in
+	if roles !== undefined
+		each val in roles
+			if val === 'super_admin'
+				a(href='/#{lang}/superadmin')
+					button.btn.btn-primary(type="button") Administrateur
+			
+			if val === 'director'
+				a(href='/#{lang}/director')
+					button.btn.btn-primary(type="button") Directeur
 
-	a(href='/teacher')
-		button.btn.btn-primary(type="button") Teacher
+			if val === 'teacher'
+				a(href='/#{lang}/teacher')
+					button.btn.btn-primary(type="button") Professeur
 
 	//- some layout with bootstrap
 

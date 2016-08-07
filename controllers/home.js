@@ -30,8 +30,13 @@ exports.root = function(req, res) {
 }
 
 exports.index = function(req, res) {
+	var roleV = '';
+	if(req.user != undefined)
+	{
+		roleV = req.user.roles;
+	}
 	res.render('index', {
-		title: '',
+		roles: roleV,
 		name: 'Joao'
 	});
 };
@@ -77,7 +82,6 @@ exports.contactPost = function(req, res){
 	var user = "user";
 
 	var content = '<h3>From ' + user + '</h3>Message:<br/>' + req.body.comment;
-
 
 	var message = {
 		message: {
