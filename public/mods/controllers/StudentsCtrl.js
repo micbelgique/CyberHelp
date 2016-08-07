@@ -6,14 +6,14 @@ angular.module('crm_app')
 
 			$http.defaults.withCredentials = true;
 
-			$scope.Students = [];
+			$scope.students = [];
 			$scope.alerts = [];
 			$scope.current = {};
 			$scope.isEditing = false;
 
 			$scope.find = function() {
-				Student.query({}, function(Students) {
-					$scope.Students = Students;
+				Student.query({}, function(students) {
+					$scope.students = students;
 				});
 				Alert.query({}, function(alerts) {
 					console.log(alerts);
@@ -22,6 +22,33 @@ angular.module('crm_app')
 					console.log("Error alert ",err);
 				});
 			};
+			$scope.validate = function(alert){
+				var a = new Alert(alert);
+				a.status = 'accepted';
+
+				a.$update(
+					function(data) {
+						if (data.message) alert(data.message)
+
+						$scope.cancel();
+						$scope.find();
+					}
+				);
+			}
+
+			$scope.refuse = function(alert){
+				var a = new Alert(alert);
+				a.status = 'closed';
+
+				a.$update(
+					function(data) {
+						if (data.message) alert(data.message)
+
+						$scope.cancel();
+						$scope.find();
+					}
+				);
+			}
 
 			$scope.submitNew = function() {
 				if ($scope.current['_id'])
