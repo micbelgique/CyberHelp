@@ -8,6 +8,7 @@ angular.module('crm_app').factory('Alert', ['$resource',
 			alertId: '@_id'
 		}, {
 			update: {
+				url: '/api/alerts/:alertId',
 				method: 'PUT',
 				withCredentials: true
 			},

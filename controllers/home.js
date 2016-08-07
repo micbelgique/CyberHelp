@@ -148,6 +148,7 @@ exports.superadmin = function(req, res){
 }
 
 exports.director = function(req, res){
+	console.log(req.user);
 	res.render('main/director', {
 		schoolId: req.user.school
 	});
