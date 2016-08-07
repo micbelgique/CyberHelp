@@ -65,7 +65,7 @@ LocalStorageService,$ionicHistory,$state) {
                  $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
-                 $state.go('alertSuivis', {}, {reload: true});
+                 $state.go('alert', {}, {reload: true});
             })
             .catch(function(err){
                 console.log("Err ",err)

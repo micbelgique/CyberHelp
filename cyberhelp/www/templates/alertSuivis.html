@@ -7,7 +7,8 @@
             </label>
             <ion-item id="alertSuivis-list-item1" class="  "
                 ng-repeat="alert in alerts">
-                Alert (# {{alert._id.substring(0,6)}})  crée le {{ alert.created_at }} est en status
+                Alert (# {{alert._id.substring(0,6)}})  crée le {{ alert.created_at }}<br>
+                 est en status
                 {{alert.status}}-
                 {{alert.message }}
                 </ion-item>
