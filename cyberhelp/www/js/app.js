@@ -28,7 +28,7 @@ angular.module('app', ['ionic','ionic.service.core', 'ionic.service.push', 'app.
         },
         "onRegister": function(data) {
           console.log("Onregister token user ionic",data.token);
-          $window.localStorage["ionic-user-token"]= data.token;
+          $window.localStorage["ionic-user-token"] = data.token;
         }
       });
 

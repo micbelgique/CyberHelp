@@ -10,7 +10,7 @@ module.exports = function(app) {
 		.post(passport.authenticate('jwt', { session: true}), alerts.create);
 
 	app.route('/api/alerts/classroom/:classroomId')
-		.get(passport.authenticate('jwt', { session: true}), alerts.listByClass);
+		.get(alerts.listByClass);
 
 	app.route('/api/alerts/:alertId')
 		.get(alerts.read)
