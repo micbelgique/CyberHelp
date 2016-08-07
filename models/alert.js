@@ -20,7 +20,8 @@ var schema = mongoose.Schema({
 	created_at :{
 		type: Date,
 		default:Date.now
-	}
+	},
+	ionicToken : String
 });
 
 var Alert = mongoose.model('Alert', schema);

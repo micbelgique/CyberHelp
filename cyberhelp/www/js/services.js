@@ -86,6 +86,9 @@ angular.module('app.services', [])
         else
             return "";
     }
+    vm.getIonicUserToken = function(){
+        return $window.localStorage["ionic-user-token"];
+    }
     vm.setAuthToken = function(value){
         return $window.localStorage[AUTH_TOKEN_KEY]= value;
     }

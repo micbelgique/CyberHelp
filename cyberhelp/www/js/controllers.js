@@ -55,7 +55,7 @@ LocalStorageService,$ionicHistory,$state) {
         message : ""
     };
     var user = LocalStorageService.getAuthToken()
-    
+    $scope.data.ionicToken = LocalStorageService.getIonicUserToken()
     $scope.sendAlert = function () {
         $scope.data.alertType = $scope.data.alertType.value;
         ApiService

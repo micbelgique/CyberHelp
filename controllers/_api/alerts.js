@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 	Alert = require('../../models/alert.js'),
 	Classroom = require('../../models/classroom.js'),
 	_ = require('lodash');
+	var request = require('request');
 
 /**
  * Create a customer
@@ -41,14 +42,45 @@ exports.update = function(req, res) {
 	var alert = req.alert;
 
 	alert = _.extend(alert, req.body);
-
+	/*Send notification if accepted*/
+	
 	alert.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: err
 			});
 		} else {
-			res.jsonp(alert);
+			if(alert.status==="accepted"){
+				var bearer ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNWFjNDAzNS0zNGE3LTRjMTgtYWVmOS01YzlhYmY1N2E1MDMifQ.io-z3EyqqhINuudBY3aTlF7n7TwI8_omCktL2qGYrD8";
+				var push = {
+					"user_ids": [alert.ionicToken],
+					"notification": {
+						"message":"Hello World!"
+					}
+				}
+
+				//Lets configure and request
+				request({
+					url: 'https://api.ionic.io/push/notifications', //URL to hit
+					method: 'POST',
+					headers: { //We can define headers too
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer '+token
+					},
+					//Lets post the following key/values as form
+					json: push
+				}, function(error, response, body){
+					if(error) {
+						console.log(error);
+					} else {
+						return res.jsonp(alert);
+					}
+				});
+			}
+			else{
+				res.jsonp(alert);
+			}
+			
 		}
 	});
 };
