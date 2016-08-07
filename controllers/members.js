@@ -284,6 +284,9 @@ var loginAndFinaliseRegistration = function(req, res){
 				case "super_admin":
 					res.redirect('/' + req.lang + '/superadmin')
 					break;
+				case "superadmin":
+					res.redirect('/' + req.lang + '/superadmin')
+					break;
 				case "director":
 				res.redirect('/' + req.lang + '/director')
 				break;
@@ -291,7 +294,7 @@ var loginAndFinaliseRegistration = function(req, res){
 					res.redirect('/' + req.lang + '/teacher')
 					break;
 				default:
-				res.send('bad')
+				res.redirect('/')
 					break;
 			}
 			// return res.render('index', {
@@ -572,7 +575,6 @@ exports.register = function(req, res) {
 
 exports.registerPost = function(req, res) {
 
-
 	var query = req.query.myQuery;
 
 	if(!query)
@@ -608,6 +610,7 @@ exports.registerPost = function(req, res) {
 
 			user.email = req.body.email;
 			user.password = user.generateHash(req.body.password);
+			user.roles.push('superadmin');
 
 			user.last = new Moment();
 
@@ -632,7 +635,6 @@ exports.registerPost = function(req, res) {
 						query='none'
 
 					console.log('-> ' + query);
-
 					req.user = user;
 
 					loginAndFinaliseRegistration(req, res);
