@@ -150,7 +150,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new FacebookStrategy({
 		clientID: 'xxx',
 		clientSecret: "xxx",
-		callbackURL: "http://www.smilefocus.org/auth/facebook/callback",
+		callbackURL: "http://www.xxx.xxx/auth/facebook/callback",
 		profileFields: [
 			'id', 'name',
 			'picture.type(large)', 'emails',
@@ -203,7 +203,7 @@ app.get('/auth/facebook', function(req, res, next){
 		console.log(query);
 	 passport.authenticate('facebook', {
 
-		callbackURL: "http://www.smilefocus.org/auth/facebook/callback?myQuery="+ query,
+		callbackURL: "http://www.xxx.org/auth/facebook/callback?myQuery="+ query,
 		scope: ['email']
 	})(req, res, next)
 });
@@ -211,7 +211,7 @@ app.get('/auth/facebook', function(req, res, next){
 
 app.get('/auth/facebook/callback', function(req, res, next){
 	passport.authenticate('facebook', {
-		callbackURL: "http://www.smilefocus.org/auth/facebook/callback?myQuery="+ req.query.myQuery,
+		callbackURL: "http://www.xxx.org/auth/facebook/callback?myQuery="+ req.query.myQuery,
 		successRedirect: "/"+req.query.myQuery+"/members/loggedfb2?myQuery="+ req.query.myQuery,
 		successFlash: true,
 		failureRedirect: "/"+req.query.myQuery+"/members/errorfblogin",

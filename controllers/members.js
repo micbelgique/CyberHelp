@@ -363,8 +363,8 @@ var sendVerifEmail = function(user){
 			to: [{
 				email: user.email
 			}],
-			from_email: 'charly@mercicharly.com',
-			subject: 'Valider votre compte mercicharly',
+			from_email: 'xxx@xxx.com',
+			subject: 'Valider votre compte xxx',
 			// subject: 'Merci de votre inscription!',
 			html: compiledTemplate.render(payload)
 		}

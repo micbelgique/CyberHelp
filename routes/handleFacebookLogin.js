@@ -14,15 +14,15 @@ var random = require('random-gen');
 var Moment = require('moment');
 
 
-var mandrill = require('node-mandrill')('cqquNxU71EL77FsQJcKH3w');
+var mandrill = require('node-mandrill')('xxxx');
 var fs = require('fs');
 var hogan = require('hogan.js');
 
 
 var jwt = require('jsonwebtoken');
 
-var api_key = 'key-b8c5c237fd45cf9dafda70dab4f7dcb3';
-var domain = 'smilefocus.org';
+var api_key = 'key-xxxx';
+var domain = 'xxx.xxx';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 var mailcomposer = require('mailcomposer');
 
@@ -34,9 +34,9 @@ var sendMailgunEmail = function (user) {
 	var c3 = Math.floor((Math.random() * 1000) + 100);
 
 	var payload = {
-		code01: 'CHARLY'+c1,
-		code02: 'CHARLY'+c2,
-		code03: 'CHARLY'+c3
+		code01: 'www'+c1,
+		code02: 'www'+c2,
+		code03: 'www'+c3
 	}
 
 	var template = fs.readFileSync('./templates/inscription.hjs', 'utf-8');
@@ -44,7 +44,7 @@ var sendMailgunEmail = function (user) {
 
 
 	var mail = mailcomposer({
-	  from: 'charly@mercicharly.com',
+	  from: 'xxx@xxx.com',
 	  to: user.email,
 	  subject: 'Merci ' + user.first_name + ' !',
 	  // body: 'Test email text',
@@ -86,8 +86,8 @@ var sendWelcomeEmail = function (user, lang) {
       to: [{
         email: user.email
       }],
-      from_email: 'contact@smilefocus.org',
-      from_name: 'SmileFocus',
+      from_email: 'xxx@xxx.org',
+      from_name: 'xxx',
       subject: 'Welcome ' + user.first_name + ' !',
       // subject: 'Merci de votre inscription!',
       html: compiledTemplate.render(payload)
@@ -124,7 +124,7 @@ module.exports = function(accessToken, refreshToken, profile, done) {
     };
 
     if(!profile.emails){
-      console.log('fuck this shit: NO EMAIL');
+      console.log(': NO EMAIL');
       	u.message = 'no_email';
     	return done(null, false, { message: JSON.stringify(u)});
     }
