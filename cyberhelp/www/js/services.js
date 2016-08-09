@@ -98,5 +98,8 @@ angular.module('app.services', [])
     vm.setAuthToken = function(value){
         return $window.localStorage[AUTH_TOKEN_KEY]= value;
     }
+    vm.removeAuthToken = function(){
+        $window.localStorage.removeItem(AUTH_TOKEN_KEY);
+    }
     return vm;
 }]);
